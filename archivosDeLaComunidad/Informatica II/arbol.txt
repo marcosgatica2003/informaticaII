@@ -1,0 +1,62 @@
+
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+ struct nodo
+ { int dato;
+    struct nodo *der;
+    struct nodo *izq;
+ };
+ 
+ void imprimir ( struct nodo *p);
+ 
+ int main()
+ {  struct nodo *raiz,*padre,*marcador,*nuevo; 
+    int c;
+    	
+    raiz=(struct nodo*)malloc(sizeof(*raiz));
+	(*raiz).dato=getchar();
+	 (*raiz).der=NULL;
+	 (*raiz).izq=NULL;
+	 
+	      while(  (c=getchar()) !='s')
+	          {  marcador=raiz;
+	                 while ( marcador !=NULL)
+	                     { padre=marcador;
+	                             if(  (int)c < (int)(*padre).dato)
+	                                {  marcador=(*padre).der;
+	                                }
+	                              else
+								    { marcador=(*padre).izq;
+								    }  
+	                     }
+			  }
+	
+	 nuevo=(struct nodo*)malloc(sizeof(*nuevo));
+	 (*nuevo).dato=getchar();
+	 (*nuevo).der=NULL;
+	 (*nuevo).izq=NULL;
+	                              if(  (int)c < (int)(*padre).dato)
+	                                {  (*padre).der=nuevo;
+	                                }
+	                              else
+								    {    (*padre).izq=nuevo;
+								    }
+	printf("raiz %d  padre %d nuevo %d\n",raiz,padre,nuevo);
+	imprimir(raiz);								 
+								    
+	 	
+ 	return 0;
+ }
+ 
+ void imprimir( struct nodo *p)
+ {  if(p!=NULL)
+      { printf("%c",(*p).dato);
+          if(   (*p).der !=NULL)
+              {  imprimir( (*p).der);
+              }
+          if(   (*p).izq !=NULL)
+              {  imprimir( (*p).izq);
+              }  
+      }
+ }

@@ -1,0 +1,69 @@
+1. Crear un arreglo dinámico de tamaño “n”. El arreglo se crea en main y una función tomara el tamaño “n” desde teclado. El arreglo contiene caracteres ingresados por teclado y se deberá crear otro arreglo que solo contenga las mayúsculas del original.
+
+#include<stdio.h>
+#include<malloc.h>
+
+int tamano(void);
+void imprime(char *, int);
+
+int main()
+{
+    int tam1, tam2, i, j;
+    char *p1, *p2;
+    
+    tam1=tamano();
+    
+    p1=(char*)malloc(sizeof(char)*tam1);
+    
+    printf("\nIngrese el arreglo de %d caracteres: \n", tam1);
+                    for(i=0 ;i<tam1 ;i++)
+                    {
+                            printf("\tElemento %d: ", i+1);
+                            scanf("%c", (p1+i));  scanf("%c", (p1+i));
+                    }
+    tam2=0;
+           for(i=0 ;i<tam1 ;i++)
+           {
+                   if( (*(p1+i)>='A') && (*(p1+i)<='Z'))
+                   {
+                       tam2++;
+                   }
+           }
+                     
+    p2=(char*)malloc(sizeof(char)*tam2);
+    j=0;
+           for(i=0 ;i<tam1 ;i++)
+           {
+                   if( (*(p1+i)>='A') && (*(p1+i)<='Z') )
+                   {
+                          *(p2+j)=*(p1+i);
+                          j++;
+                   }
+           }
+           
+    printf("\nEl arreglo original es: \n");
+                 imprime(p1, tam1);
+    printf("\nEl arreglo modificado es: \n");
+                 imprime(p2, tam2);                   
+    
+  system("PAUSE");
+  return 0;
+}
+
+int tamano(void)
+{
+  int a;
+      printf("Ingrese el número de elementos del arreglo: ");
+      scanf("%d", &a);
+  return a;
+}
+
+void imprime(char *p, int n)
+{
+   int i;
+       for(i=0 ;i<n ;i++)
+       {
+               printf("\t%d. %c\n", i+1, *(p+i));
+       }
+}
+

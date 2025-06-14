@@ -1,0 +1,64 @@
+)/*se desea generar un arreglo dinamico de tamaño n de enteros.
+ El tamaño y los elementsos se toman del teclado. 
+generar una pila con los elementos del arreglo.
+ recorrer la pila y mostrar su contenido en pantalla */
+ 
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{ int dato; 
+ struct nodo *sig;
+};
+
+
+int tamano(void)
+{ int n;
+     printf("ingresa el tamano q keres :D\n");
+     scanf("%d",&n);
+     
+     return n; 
+} 
+
+
+int main()
+{ struct nodo *q,*base;
+   int *p,i;
+
+   int tam1;
+   base=NULL;
+
+tam1=tamano();
+ 
+p=(int*)malloc(sizeof(int)*tam1) ;
+
+printf("ingresa los caracteres\n");
+for(i=0;i<tam1;i++)
+{ 
+  	printf("Caracter %d:  \n",i);
+  	scanf("%d", (p+i));
+}
+
+for(i=0;i<tam1;i++)
+{   q=(struct nodo*)malloc(sizeof(*q)); // si no creo q dentro del for me da un enlace infinito 
+
+    (*q).dato= *(p+i);  // utilizo a p como puntero q contiene los numeros nomas
+     (*q).sig=base;    // utilizo a q como el puntero q me permite realizar la pila
+      base=q;           // al ser e puntero de pila q, debo igual base a q 
+
+
+}
+
+
+printf("la lista almacenada en fora de pila es\n");
+while( q !=NULL)        // q tiene q ser distinto de null asiq puedo recorrer los datos
+{
+   printf("%d\t",(*q).dato);
+   q=(*q).sig;
+}
+
+printf("\n\n");	  
+	  
+system("PAUSE");	
+  return 0;
+}  

@@ -1,0 +1,60 @@
+/*	Desarrollar un programa que permita declarar un arreglo dinámico
+     de 10 elementos de tipo entero. Se desea recorrerlo y  
+      mostrar por pantalla los elementos múltiplos del tamaño.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 10
+
+
+
+int main(int argc, char *argv[]) 
+{
+int *p,*q,i,tam1=0,j;
+
+
+p=(int*)malloc(sizeof(int)*tam);
+
+printf("ingresa los numeros enteros\n");
+
+for(i=0;i<tam;i++)
+{scanf("%d",(p+i));
+}
+
+
+for(i=0;i<tam;i++)
+   {  
+      if(  *(p+i)%10  == 0)   // con el %10  obtengo el resto de una divicion 
+      {  tam1++;
+      }
+  } 
+  
+  q=(int*)malloc(sizeof(int)*tam1);
+
+  
+  j=0;
+   for(i=0;i<tam;i++) 
+   {
+       if(    *(p+i)%10 ==0)
+           {  *(q+j)=*(p+i);
+              j++;
+           }
+           
+  }
+  
+  for(i=0;i<tam1;i++)
+  { printf("los caracteres multimplos son :%d\n",*(q+i));
+  }
+
+
+
+
+
+
+
+
+system("PAUSE");
+	
+	return 0;
+}
+

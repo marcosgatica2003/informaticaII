@@ -1,0 +1,45 @@
+int led[]={31,33,35,37,39};      //led que parpadean
+int i,j;
+
+void setup()
+{
+  for(i=0 ;i<5 ;i++)
+  {
+    pinMode(led[i], OUTPUT);
+  }
+}
+
+void loop()
+{
+    prende();
+    delay(400);
+    parpadea();
+    
+}
+
+void prende()
+{
+    for(i=0 ;i<5 ;i++)
+    {
+        digitalWrite(led[i], HIGH);
+        delay(80);
+    }
+}
+
+void parpadea()
+{
+    for(j=0;j<3;j++)
+    {
+      for(i=0 ;i<5 ;i++)
+      {
+          digitalWrite(led[i], HIGH);
+      }
+      delay(90);
+      
+      for(i=0 ;i<5 ;i++)
+      {
+          digitalWrite(led[i], LOW);
+      }
+      delay(90);
+    }
+}

@@ -1,0 +1,119 @@
+1)
+#include <iostream>
+using namespace std;
+class isopo{
+		private:
+				int ent1,ent2;
+		public:
+				isopo (int a,int b){ent1=a;ent2=b;};
+				void uni1 ();
+				void uni2 ();
+			};
+struct byte{
+		unsigned a8:1;
+		unsigned a7:1;
+		unsigned a6:1;
+		unsigned a5:1;
+		unsigned a4:1;
+		unsigned a3:1;
+		unsigned a2:1;
+		unsigned a1:1;
+		};
+union ent
+		{	struct byte b;
+			int ente;
+		};
+void isopo::uni1()
+{ 	union ent u;
+	u.ente=ent1;
+	if ((u.b.a4)==1)
+		cout<<"el bit esta activo\n";
+	else
+		cout<<"el bit no esta activo\n";
+};
+
+void isopo::uni2()
+{	union ent u;
+	u.ente=ent2;
+	cout<<"El numero decimal original es=";
+	cout<<u.ente;
+	u.b.a6=1;
+	cout<<"\nEl numero cambiado es=";
+	cout<<u.ente;
+};
+int main(int argc, char **argv)
+{ 	int a,b;
+	cout<<"ingrese entero 1\n";
+	cin>>a;
+	cout<<"ingrese entero 2\n";
+	cin>>b;
+	class isopo p(a,b);
+	p.uni1();
+	p.uni2();
+	
+	return 0;
+}
+
+
+
+
+2)
+#include <iostream>
+using namespace std;
+struct arbol{
+		int dato;
+		struct arbol *izq;
+		struct arbol *der;
+			};
+			
+void carga (struct arbol **,int);
+void muestra(struct arbol*);
+
+int main(int argc, char **argv)
+{	struct arbol *helecho;
+	helecho=NULL;
+	int valor,op,bandera=0;
+	do{
+		cout<<"ingrese la opcion deseada:\n1.carga\n2.muestra\n3.borra\n";
+		cin>>op;
+		switch (op)
+			{	case 1: cout<<"Ingrese dato:\n";
+						cin>>valor;
+						carga(&helecho,valor);
+						break;
+				case 2: muestra(helecho);
+						break;
+				//case 3: borrar();
+				//		break;
+				default: bandera=1;
+						break;
+			}
+		}while(bandera!=1);
+
+	return 0;
+}
+
+void carga (struct arbol ** enredadera, int a)
+{
+	if((*enredadera)==NULL)
+		{ 	*enredadera=new(struct arbol);
+			(*enredadera)->dato=a;
+			(*enredadera)->izq=NULL;
+			(*enredadera)->der=NULL;
+		}
+	else 
+		{ 	if(((*enredadera)->dato)<a)
+				{ carga(&(*enredadera)->izq,a);}
+			else
+				{ carga(&(*enredadera)->der,a);}
+		}
+}
+
+void muestra (struct arbol*p)
+{ if(p!=NULL)
+	{	muestra (p->izq);
+		cout<<p->dato;
+		muestra (p->der);
+	}
+}
+

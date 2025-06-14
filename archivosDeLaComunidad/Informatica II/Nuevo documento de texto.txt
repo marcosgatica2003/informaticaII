@@ -1,0 +1,5 @@
+http://carloscondor.com/a/Control-por-voz-sobre-un-Arduino
+
+http://www.msebilbao.com/notas/downloads/EasyVR%20Guia%20rapida.pdf
+
+http://4imedio.blogspot.com.ar/2013/03/encender-leds-con-la-voz-easyvr.html

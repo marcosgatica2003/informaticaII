@@ -1,0 +1,45 @@
+//1) Se desea codificar una pila dinámica. 
+//Los nodos contienen números enteros.
+// Cargar la pila con 10 nodos, recorrerla y mostrar su contenido por pantalla.
+
+# include<stdio.h>
+# include<stdlib.h>
+
+struct nodo
+{ int dato;
+  struct nodo *sig;
+};
+
+
+int main()
+{ struct nodo *p, *base1;
+ int c,i;
+
+
+base1=NULL;
+
+
+printf("ingresa 10 numeros \n\n");
+
+for(i=0;i<10;i++)
+{        printf("ingresa n %d: ",i+1);
+         scanf("%d",&c);
+        
+         p=(struct nodo*)malloc(sizeof(*p));
+          
+		  (*p).dato=c;
+          (*p).sig=base1;
+           base1=p;
+	
+}
+
+printf("la informacion almacenada en forma de pila es \n");
+while(p!=NULL)
+{printf("%d\n",(*p).dato);
+  p=(*p).sig;
+}
+
+
+return 0;
+} 
+

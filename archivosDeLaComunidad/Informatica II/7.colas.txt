@@ -1,0 +1,61 @@
+// 1 crea una cola dinamica de numeros enteros 
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct nodo
+{ int dato;
+   struct  nodo   *sig;
+
+};
+
+int getin( void );
+
+int main()
+ { struct  nodo *p,*base,*q;
+  int  nro;
+  
+   p=(struct nodo*)malloc(sizeof(*p));
+  base=p;
+  
+  printf("ingresa los numeros enteros, para terminar -707-\n");
+  nro=getin();
+  (*p).dato=nro;
+  (*p).sig=NULL;
+  
+  while((nro=getin()) != 707)  
+   {        //si pongo p=NULL;  para mostrar q no hay memoria
+         if(!p)
+         { printf("no hay memoria\n ");
+              return 1;          
+         }
+        q=(struct nodo*)malloc(sizeof(*q));
+    
+        (*q).dato=nro;
+	    (*q).sig=NULL;
+	    (*p).sig=q;
+	     p=q;
+}
+
+p=base;
+
+printf("los numeros ingresados en forma de cola\n");
+
+while(  p!=NULL )
+{ printf("%d\t", (*p).dato);
+  p=(*p).sig;
+}
+  
+  
+  system("PAUSE");
+	return 0;
+}
+
+int getin( void )
+{ int c;
+   
+  
+   scanf("%d", &c);
+   
+   return c;
+}   

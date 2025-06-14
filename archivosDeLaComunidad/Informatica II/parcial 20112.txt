@@ -1,0 +1,102 @@
+Primer examen parcial 2012
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 100
+int main()
+{
+    int            cant, var, n, i, A[tam]={0}, encontrado=0;
+    long int   DNI[tam]={0}, dni;
+    char         cond[tam];    
+    float         porc, ocupados=0, libres;
+      printf("Ingrese la cantidad de asientos del colectivo: \n");
+      scanf("%d", &cant);      
+      for(i=1;i<=cant; i++)
+      {
+              cond[i]='L';
+      }      
+      do
+      {  
+            printf("Ingrese la opcion elegida\n\n");
+            printf(" 1. Reservar asiento.\n");
+            printf(" 2. Cancelar reserva.\n");
+            printf(" 3. Terminar proceso.\n");
+            scanf("%d", &var);
+            printf("\n");                
+                  switch(var)
+                  {
+                        case 1:          
+                             do
+                             {
+                                   printf("Ingrese el numero de asiento que desea.\n");
+                                   scanf("%d", &n);
+                                   printf("\n");
+                              }while(n>cant | | n<=0);           
+                               
+
+                   if(A[n]==0)
+                                {
+                                       printf("EL asiento esta disponible, Ingrese su DNI.\n");
+                                       scanf("%ld", &DNI[n]);
+                                        printf("La reserva ha sido realizada.\n");
+                                              A[n]=1;
+                                              cond[n]='O';
+                                        printf("\n");
+                                  }
+                                else
+                                {
+                                      printf("disculpe, el asiento esta ocupado.\n\n");
+                                  }             
+                                 break;                                       
+                        case 2:
+                              printf("Ingrese su numero de documento para cancelar la reserva.\n\n");
+                              scanf("%ld", &dni);
+                              i=1;
+		           while(i<=cant && encontrado==0)
+                                  {
+                                       if(DNI[i]==dni)
+			   {
+			           encontrado=1;
+                                               cond[i]='L';
+				A[i]=0;
+				DNI[i]=0;
+                                         }
+			 i++;
+	                       }				
+		    if(encontrado==0)
+		   {
+		          printf("Nio se ha encontrado su numero de documento.\n");                 
+	    	   }
+		 
+                              if(encontrado==1)
+		      {
+			printf("La reserva ha sido cancelada con exito\n");                        
+	    	      }
+                              break;                                       
+                        case 3:
+                              printf("\n");
+                               break;                                   
+                        default:
+                                printf("Error, Ingrese una de las opciones en pantalla.\n\n");
+                                break;
+                   }
+    }while(var!=3);    
+	system("CLS");
+    for(i=1;i<=cant;i++)
+    {
+                        ocupados=ocupados+A[i];
+    }    
+    	libres=cant-ocupados;
+	porc=(ocupados*100)/ cant;
+   printf("La cantidad de asientos ocupados es: %d\n", ocupados);
+   printf("La cantidad de asientos libres es: %d\n\n", libres);    
+   printf(“El porcentaje de asientos ocupados es: %.2f \n”, porc);
+   printf("Asiento\t       Condicion\tDNI ocupante\n");
+      	 for(i=1;i<=cant;i++)
+       	{
+                        printf("    %d\t           %c\t            %ld\n", i, cond[i], DNI[i]);
+       	}
+       	printf("\n");                                                                                                                   
+  system("PAUSE");	
+  return 0;
+}

@@ -1,0 +1,81 @@
+/*5) Se desea codificar una cola dinámica. Los nodos contienen números enteros.
+ Se deberá cargarla hasta que el usuario decida dejar de hacerlo, 
+mediante ingreso por teclado. Recorrerla y mostrar por pantalla la primera
+ mitad  del contenido de la estructura.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+struct nodo
+{ int num;
+  struct nodo *sig; 
+} ;
+
+
+
+int main()
+{  struct nodo *p,*q,*base;
+   int n,tam=0,tam1=0,i;
+   
+   p=q=base=NULL;
+   p=(struct nodo*)malloc(sizeof(*p));
+   base=p;
+   if(p==NULL)
+       { printf("no hay memoria papi\n");
+          return 1;
+       }
+    else
+        {      printf("\tIngresa numeros enteros ---707--- para terminar\n\n");
+               printf("------Nuevo Nodo-----\n");
+		       printf("Q numero elejis??:");
+			   scanf("%d",&n);
+			   printf("\n");
+			   
+			   
+			   (*p).num=n;
+			   (*p).sig=NULL;
+			   tam++;
+			   
+			   while(n!=707)
+			       {    printf("------Nuevo Nodo-----\n");
+				        printf("Q numero elejis??:");
+			   			scanf("%d",&n);
+			   			printf("\n");
+			   			q=(struct nodo*)malloc(sizeof(*q));
+			   			if(q==NULL)
+			   		     	{ printf("no hay memoria papi\n");
+          						return 1;
+			   			    }
+			   			else
+			   			    {	(*q).num=n;
+			   					(*q).sig=NULL;
+			   					(*p).sig=q;
+			   					 p=q;
+			   					 tam++;
+			   			    }
+			       	
+			       	
+			       }
+			   
+			     
+         
+        }
+system("CLS");
+p=base;
+tam1=tam/2;
+printf("La primera mitad de la estructura impreso en forma de cola\n\n");
+for(i=0;i<tam1;i++)
+{   printf("%d\t",(*p).num);
+    p=(*p).sig;
+}
+printf("\n\n");
+
+
+    system("PAUSE");
+	return 0;
+}
+
+
+

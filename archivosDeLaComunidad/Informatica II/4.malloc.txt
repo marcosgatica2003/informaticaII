@@ -1,0 +1,79 @@
+1. Crear un arreglo de caracteres de tamaño “n” que al ser ingresado no admita repetición. Generar un algoritmo que convierta las letras mayúsculas del arreglo base en minúsculas. Imprimir ambos arreglos.
+#include <stdio.h>
+#include <stdlib.h>
+
+int tamano(void);
+
+void imprime(char *, int);
+
+int i, j;
+
+int main()
+{
+    int tam1, flag;
+    char *p1, *p2;
+    
+    tam1=tamano();
+    
+    p1=(char*)malloc(sizeof(char)*tam1);
+    
+    printf("\nIngrese un arreglo de %d caracteres: \n", tam1);
+    for(i=0; i<tam1; i++)
+    {
+         do
+         {
+             do
+             {
+                   printf("Caracter %d: ", i+1);
+                   scanf("%c", (p1+i));  scanf("%c", (p1+i));
+                   flag=0;
+                   for(j=i-1 ;j>=0 ;j--)
+                   {
+                             if( *(p1+i)== *(p1+j))
+                             {
+                                 printf("\n¡Elemento repetido!--- Ingrese de nuevo el elemento %d\n\n", i+1);
+                                 flag=1;
+                             }
+                   }                                
+             }while( *(p1+i)<'A' || *(p1+i)>'z' || flag==1 );  
+         }while( *(p1+i)>=91 && *(p1+i)<=96);
+    }
+    
+    p2=(char*)malloc(sizeof(char)*tam1);
+    
+    for(i=0 ;i<tam1 ;i++)
+    {
+            if( *(p1+i)>='A' && *(p1+i)<='Z')  // detect alas mayusculas 
+           {
+                *(p2+i)=(*(p1+i)+32);  // convierte las mayusculas a minusculas
+            }
+            else
+            {
+                *(p2+i)= *(p1+i);  // si no son mayusculas las iguala
+            }
+    }
+    
+    printf("\nEl arreglo original es: \n");
+                 imprime(p1, tam1);
+    printf("\nEL arreglo modificado es: \n");
+                 imprime(p2, tam1);            
+  
+  system("PAUSE");	
+  return 0;
+}
+
+int tamano(void)
+{
+    int a;
+        printf("Ingrese el tamano del arreglo: ");
+        scanf("%d", &a);
+    return a;
+}
+
+void imprime(char *p, int tam)
+{
+     for(i=0 ;i<tam ;i++)
+     {
+             printf("\t%d. %c\n", i+1, *(p+i));
+     }
+}

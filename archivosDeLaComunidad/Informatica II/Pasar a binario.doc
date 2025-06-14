@@ -1,0 +1,70 @@
+/*
+ * sin título.cxx
+ * 
+ * Copyright 2012 Usuario} <usuario@ubuntu>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ * 
+ */
+
+
+#include <iostream>
+using namespace std;
+
+struct byte
+{
+unsigned a8:1;
+unsigned a7:1;
+unsigned a6:1;
+unsigned a5:1;
+unsigned a4:1;
+unsigned a3:1;
+unsigned a2:1;
+unsigned a1:1;
+};
+
+union un
+{
+struct byte yop;
+char letra;
+int numero;
+};
+
+int main ()
+{
+union un b; int cont =0;
+
+cout<<"Ingrese una letra: "; cin>>b.letra;
+cout<<"La letra en binario es: ";
+cout<<b.yop.a1<<b.yop.a2<<b.yop.a3<<b.yop.a4<<b.yop.a5<<b.yop.a6<<b.yop.a7<<b.yop.a8;
+cout<<"\nEl numero en decimal es: ";
+cout<<b.numero;
+while( b.numero >= 1 )
+{
+if( (b.numero % 2) == 1 )
+cont=cont+1;
+b.numero = b.numero /2;
+}
+cout<<"\nEl numero de uno es: "<<cont;
+
+
+cout<<"\n\nIngrese un numero: "; cin>>b.numero;
+cout<<"El numero en binario es: ";
+cout<<b.yop.a1<<b.yop.a2<<b.yop.a3<<b.yop.a4<<b.yop.a5<<b.yop.a6<<b.yop.a7<<b.yop.a8;
+
+return 0;
+}

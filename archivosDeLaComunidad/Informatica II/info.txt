@@ -1,0 +1,4 @@
+tp2- faltan del 11 hasta el final
+tp4- lista  simple 5-10	-----		lista doble 2-10
+tp6- arboles  5-13
+tp7-poo 18-21, 24 y 26

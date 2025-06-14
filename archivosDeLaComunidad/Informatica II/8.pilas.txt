@@ -1,0 +1,101 @@
+/*
+8) Se desea codificar una pila dinámica con métodos para insertar nodo,
+ borrar nodo y recorrer la estructura para mostrar su contenido por pantalla.
+ Los nodos contienen números reales de simple precisión. 
+ El programa se termina cuando se ingrese por teclado "s" o "S".
+Se deberá crear un menú para solicitar por teclado cual es la tarea que se desea realizar
+*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{  int num;
+   struct nodo *sig;
+   
+};
+
+
+int main()
+{ struct nodo *p,*base;
+   int n,i=0,borrar; 
+  
+  char op;
+  base=NULL;
+  
+  
+  do
+  {
+  printf("---------------MENU---------\n\n");
+  printf("a.ingresa un numero al nodo\n");
+  printf("b.borrar nodo anterior\n");
+  printf("c.mostrar nodos en pantala\n");
+  printf("para salir presiorar  -s- o -S-\n");
+  printf("\n\n");
+  scanf("%s",&op); 
+  system("CLS"); 
+  
+  
+  switch(op)
+  {          case 'a':      
+                      if(p==NULL)
+                      {printf("no hay memoria\n");
+                       return 1;
+                       }
+                      
+                      
+                      else
+                      {
+                      printf("Nodo: %d\n",i+1);
+                      printf("q numero elejis?\n");
+                      scanf("%d",&n);
+                      
+                      p=(struct nodo*)malloc(sizeof(*p));
+                      
+                      (*p).num=n;
+                      (*p).sig=base;
+                       base=p; 
+                       i++;
+                       }
+                       break;
+                       
+               case 'b':
+                      
+                      borrar=(*p).num;
+                      printf("el nodo borrado es:%d\n ", i);
+                      printf("el numero es :%d\n",borrar);
+                      p=(*p).sig;
+                      break;
+                 
+               
+               case 'c':
+                    
+                     base=p;
+                     while(p!=NULL)
+                     {  printf("nodo:%d\n",i);
+                        printf("el numero es: %d\t", (*p).num);
+                        p=(*p).sig;
+                        i--;
+                        printf("\n\n");
+                     }  
+                                         
+                      
+                      
+                                       
+            
+  }
+  
+  
+  
+  
+  
+}while(op!='s' ||  op!='S');
+  
+  
+  
+  
+  
+  system("PAUSE");	
+  return 0;
+}

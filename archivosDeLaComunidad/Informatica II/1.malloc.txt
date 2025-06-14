@@ -1,0 +1,70 @@
+1. Implementar  un programa que permita crear un arreglo de enteros estático de tamaño “n” definido por el programador. Se desea crear métodos para:
+a)	Cargar arreglo desde teclado.
+b)	Mostrar arreglo por pantalla.
+c)	Crear un arreglo copia para realizar modificaciones.
+d)	Determinar si el arreglo contiene enteros negativos, y en tal caso,  igualarlos a cero.
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 5
+
+void ingresa_arreglo(int *);
+void copia_arreglo(int *, int *);
+void imprime_arreglo(int *);
+void modifica_arreglo(int *);
+
+int i;
+
+int main()
+{
+    int a[tam], b[tam]; 
+    
+    ingresa_arreglo(a);
+    
+    printf("El arreglo ingresado es es: \n");
+               imprime_arreglo(a);
+               
+    copia_arreglo(a, b);
+    modifica_arreglo(b);
+    
+    printf("\nEl arreglo modificado es: \n");
+                 imprime_arreglo(b);     
+  
+  system("PAUSE");	
+  return 0;
+}
+
+void ingresa_arreglo(int *p)
+{
+     printf("Ingrese un arreglo de %d elementos: \n", tam);
+     for(i=0 ;i<tam ;i++)
+     {
+             printf("\tElemento %d: ", i+1);  scanf("%d", (p+i));
+     }
+}
+
+void copia_arreglo(int *p1, int *p2)
+{
+     for(i=0 ;i<tam; i++)
+     {
+             *(p2+i)=*(p1+i);
+     }
+}
+
+void imprime_arreglo(int *p)
+{
+     for(i=0 ;i<tam ;i++)
+     {
+             printf("\t%d.  %d\n", i+1, *(p+i));
+     }
+}
+
+void modifica_arreglo(int *p)
+{
+     for(i=0 ;i<tam ;i++)
+     {
+             if(*(p+i)<0)
+             {
+                         *(p+i)=0;
+             }
+     }
+}

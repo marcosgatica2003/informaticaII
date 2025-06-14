@@ -1,0 +1,79 @@
+/*3)	Desarrollar un programa que permita declarar un arreglo dinámico de 20 elementos de tipo entero con
+ repetición. Se desea generar otro sin las repeticiones del arreglo origen.
+  Mostrar ambos arreglos por pantalla.	*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 5
+
+
+
+int main(int argc, char *argv[]) 
+{
+int *p,*q,i,tam1=0,j=0,k=0,tam2=0;
+
+
+p=(int*)malloc(sizeof(int)*tam);
+   printf("ingresa los numeros enteros\n");
+
+                 for(i=0;i<tam;i++)
+				{  
+				       
+				       
+				       scanf("%d",(p+i));
+				      
+				          
+				       
+				       
+				}
+printf("los numeros ingresados son   \n\n");
+  
+  for(i=0;i<tam;i++)
+  { printf("%d\t " , *(p+i));
+  }
+
+
+for(i=0;i<tam;i++)
+{   if( *(p+i)!= NULL)
+      {   for(j=i+1;j<tam;j++) 
+              {	    if(  *(p+j)== *(p+i))
+                      {    *(p+j)=NULL;
+                          tam1++;
+                      }
+              }
+      
+      } 
+
+}
+
+tam2=tam-tam1;
+
+q=(int*)malloc(sizeof(int)*tam2);
+
+for(i=0;i<tam;i++)
+{   if( *(p+i)!= NULL)
+      {   *(q+k)=*(p+i);
+          k++;
+      
+      } 
+
+}
+
+printf("\n\n");
+  printf("los no repetidos son  \n\n");
+  
+  for(i=0;i<tam2;i++)
+  { printf("%d\t " , *(q+i));
+  }
+
+
+
+
+
+
+
+
+system("PAUSE");
+	
+	return 0;
+}

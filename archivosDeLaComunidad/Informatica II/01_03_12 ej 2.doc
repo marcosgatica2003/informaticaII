@@ -1,0 +1,82 @@
+/*
+ * sin título.cxx
+ * 
+ * Copyright 2012 Usuario} <usuario@ubuntu>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ * 
+ */
+
+
+#include <iostream>
+using namespace std;
+class vector{
+		protected:
+			int vec[2];
+		public:
+			friend void mult(class matriz);
+			};
+class matriz:public vector	{
+			private:
+				int matrix[2][2];
+							
+			public:
+				void carga(void);
+				friend void mult(class matriz);
+							};
+void matriz::carga(void)
+{	cout<<"ingrese los valores del vector y la matrix\n";
+	cout<<"VECTOR\n\n";
+	for (int i = 0; i < 2; i++)
+	{ 	
+		cout<<"\nvalor"<<i<<"=\t";
+		cin>>vec[i];
+	}
+	cout<<"\nMATRIX\n\n";
+	for (int i = 0; i < 2; i++)
+	{	for (int j = 0; j < 2; j++)
+			{
+				cout<<"\nvalor"<<i<<j<<"=\t";
+				cin>>matrix[i][j];
+			}
+	
+		
+	}
+}
+void mult (class matriz m)
+{ int res[2]={0,0};
+	for (int i = 0; i < 2; i++)
+	{	for (int j = 0; j < 2; j++)
+		{
+			res[i]=res[i]+m.matrix[i][j]*m.vec[i];
+		}
+	}
+	cout<<"el Resultado es="<<endl;
+	for (int i = 0; i < 2; i++)
+	{
+		cout<<res[i]<<"\t";
+	}
+}
+	
+int main(int argc, char **argv)
+{	class matriz mat;
+	
+	mat.carga();
+	mult(mat);
+	return 0;
+}
+

@@ -1,0 +1,81 @@
+#include <iostream>
+
+//no controlo la memoria..!!
+
+struct nodo
+ { int dato;
+ struct nodo *pder;
+ struct nodo *piz;
+	
+};
+
+
+int main()
+{ //declaro
+  //ingreso
+  
+  q=new(struct nodo);
+  scanf("%d",&q.dato);
+  
+  q.der=q.iz=NULL;
+  raiz=q
+  
+  pritnf("continuar presione s mayuscula");
+  while(  scanf("%c",&op) == 's')
+  { q=new(struct nodo);
+  scanf("%d",&q.dato);
+  
+  q.piz=q.pder=NULL;
+  
+  p.actual=raiz;   // inicio busqueda
+  while(p.actual!=NUL);
+  
+  if(q.dato <=p.actuar.dato)
+      { p.marca=p.actual;
+      p.actual=p.actual.piz
+      band=0;     //  fue a izq
+      
+      }
+   esle 
+   {  p.marco=p.actual:
+   	p.actual=q.actual.der;
+   	band=1   // fue hacia der
+   }
+  
+} 
+  	
+// cierro el while
+
+if(band==0)
+     p.marco--> piz=q;
+     
+else 
+    p.marco--> pder=q;
+
+printf("desea continuar imp s mayuscula\n");
+
+scanf("%d",&op);   //
+
+//cierro el whiñe
+  //se muestra el arbol  in.orden;
+  
+  q=raiz;
+  in.orden(q);
+  scanf("%c",&op);
+  return 0;
+  
+  
+  
+
+}
+
+
+void in.orden(struct nodo *p)
+{
+	if(p!=NULL)
+	{  in_orden(p.piz);
+	   pritnf("%d",&p.dato);
+	   in.orden(p.pder)
+  	}
+	
+}

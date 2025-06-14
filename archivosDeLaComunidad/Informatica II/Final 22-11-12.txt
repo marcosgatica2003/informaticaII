@@ -1,0 +1,16 @@
+1. Linux
+	Se tiene la siguiente linea:
+		dr--r-xr-x 2 jorge jorge 4096 2010-11-17 15:12 discos
+
+	a.Explique q significa cada uno de los terminos
+	b.Como usaria el comando chmod para que el usuario pueda escribir en discos
+	c.Como usaria el comando chmod para que el usuario y grupo tengan permisos de escritura y ejecutar discos
+	d.Como se usa chgrp de un ejemplo
+
+2. C++. A partir de una clase vector (dimension 2, tipo int) derive una clase matriz (2x2). 
+Haga un programa multiplique el vector por la matriz usando una funcion amiga
+
+3. Puerto serie.
+	a.Un sistema configurado en el formato 8N1, transmite el codigo ASCII 235. Muestre la onda resultante completa
+	b.¿Que porcentaje de la onda anterior se pierde en señalizacion?
+	c.¿Como se hizo para configurar ese 8N1 en la UART? (explicacion, no programa) 

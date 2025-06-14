@@ -1,0 +1,489 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{
+       int dato;
+       struct nodo *sig;
+};
+
+int menu(void);
+void imprime(struct nodo *p);
+int main()
+{
+    struct nodo *p, *primero, *actual, *previo;
+    int opcion, info;
+    
+    primero=NULL;
+    
+    do
+    {
+        opcion=menu();
+        switch (opcion)
+        {
+               case 1:
+                    p=(struct nodo*)malloc(sizeof(*p));
+                    if( p!=NULL )
+                    {
+                        printf("\n---Nuevo Nodo---\n");
+                        printf("Ingrese un entero: ");
+                        scanf("%d", &(*p).dato);
+                        (*p).sig=NULL;
+                        
+                        previo=NULL;
+                        actual=primero;
+                        while ( actual !=NULL && (*p).dato>(*actual).dato )
+                        {   
+                            previo=actual;
+                            actual=(*actual).sig; 
+                        }
+
+                        if( previo==NULL ) // el dato es el nuevo primero o el más pequeño de todos
+                        {
+                            (*p).sig=primero;
+                            primero=p;
+                        }
+                        else 
+                        { 
+                              (*previo).sig=p;
+                              (*p).sig=actual;
+                        }
+                    }
+                    else
+                    {
+                        printf("No hay memoria\n");
+                        return 1;
+                    }
+                    break;
+               case 2:
+                    if(  primero!=NULL )  // averigua si hay nodos en la estructura
+                    { 
+                         printf("Ingresar el nodo a borrar\n");           
+                         scanf ( "%d",&info); 
+                         if( info==(*primero).dato)
+                         { 
+                             p=primero;
+                             primero=(*p).sig;
+                             free(p);
+                         }
+                         else 
+                         { 
+                              previo=primero;
+                              actual=(*primero).sig;           // se posicionan los punteros para la búsqueda    
+                         }
+                         while ( actual!=NULL &&  (*actual).dato!=info)
+                         {   
+                              previo=actual;
+                              actual=(*actual).sig; }
+
+                              if( actual!=NULL ) 
+                              { 
+                                  p=actual;
+                                  (*previo).sig= (*actual).sig;
+                                  free(p);
+                              }
+                              else     
+                              {
+                                   printf ("no lo encontró\n");
+                              }                
+                         } 
+                     else 
+                     { 
+                          printf ( " lista vacia");
+                     }
+                    break;
+               case 3:
+                    if(primero!=NULL)
+                    {
+                          p=primero;
+                          imprime(p);
+                    }
+                    else
+                    {
+                        printf("La lista esta vacia\n");
+                    }
+                    break;
+               case 4:
+                    system("CLS");
+                      printf("FIN DEL PROGRAMA\n\n");
+                    break;
+               default:
+                    system("CLS");
+                      printf("¡ERROR! INgrese una opcion valida\n");
+                    break;
+        }
+    }while(opcion!=4);
+  
+  
+  system("PAUSE");	
+  return 0;
+}
+
+int menu(void)
+{
+    int n;
+        printf("\n---MENU---\n");
+        printf("1. Ingresar nodo\n");
+        printf("2. Borrar Nodo\n");
+        printf("3. Imprimir\n");
+        printf("4. Salir\n");
+        printf("\nIngrese opcion: ");
+        scanf("%d", &n);
+    return n;
+}
+
+void imprime(struct nodo *p)
+{
+     while(p!=NULL)
+     {
+           printf("%d\n", (*p).dato );
+           p=(*p).sig;
+     }
+}
+
+
+
+
+
+/* 1. Se desea codificar una lista dinámica simplemente enlazada. Los nodos contienen 
+números reales. Cargar la estructura con nodos, hasta que el usuario desea dejar
+ de hacerle.Recorrerla y mostrar su contenido por pantalla 
+ (los datos deben quedar ordenados).*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{
+       int dato;
+       struct nodo *sig;
+};
+
+int getint(void);
+void imprime(struct nodo *);
+
+int main()
+{
+    struct nodo *p, *primero, *actual, *previo;
+    int n;
+    
+    primero=NULL;
+    
+    while( (n=getint())!=0 )
+    {
+       p=(struct nodo*)malloc(sizeof(*p));
+       if( p!=NULL )
+       {
+         (*p).dato=n;
+         (*p).sig=NULL;
+                        
+         previo=NULL;
+         actual=primero;
+         while ( actual !=NULL && (*p).dato>(*actual).dato )
+         {   
+            previo=actual;
+            actual=(*actual).sig; 
+         }
+
+         if( previo==NULL ) // el dato es el nuevo primero o el más pequeño de todos
+         {
+            (*p).sig=primero;
+            primero=p;
+         }
+         else 
+         { 
+             (*previo).sig=p;
+             (*p).sig=actual;
+         }
+       }
+       else
+       {
+           printf("No hay memoria\n");
+           return 1;
+       }
+      }
+     
+     printf("\nLa lista ingresada es: \n");
+     p=primero;
+     imprime(p);
+      
+  system("PAUSE");	
+  return 0;
+}
+
+int getint(void)
+{
+    int n;
+        printf("\n---Nuevo Nodo---\n");
+         printf("Ingrese un entero: ");
+         scanf("%d", &n);
+    return n;
+}
+
+void imprime(struct nodo *p)
+{
+     if(p!=NULL)
+     {
+        while(p!=NULL)
+        {
+           printf("%d\n", (*p).dato );
+           p=(*p).sig;
+        }
+     }
+     else
+     {
+         printf("La lista esta vacia\n");
+     }
+}
+
+
+
+/* 2.Codificar un programa que permita cargar una lista dinámica simple con N 
+caracteres alfabéticos ingresados desde el teclado. Recorrerla y mostrar 
+su contenido por pantalla.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{
+       char dato;
+       struct nodo *sig;
+};
+
+char get(void);
+void imprime(struct nodo *);
+
+int main()
+{
+    struct nodo *p, *primero, *actual, *previo;
+    char c;
+    
+    primero=NULL;
+    
+    while( (c=get())!='S' )
+    {
+       p=(struct nodo*)malloc(sizeof(*p));
+       if( p!=NULL )
+       {
+         (*p).dato=c;
+         (*p).sig=NULL;
+                        
+         previo=NULL;
+         actual=primero;
+         while ( actual !=NULL && (*p).dato>(*actual).dato )
+         {   
+            previo=actual;
+            actual=(*actual).sig; 
+         }
+
+         if( previo==NULL ) // el dato es el nuevo primero o el más pequeño de todos
+         {
+            (*p).sig=primero;
+            primero=p;
+         }
+         else 
+         { 
+             (*previo).sig=p;
+             (*p).sig=actual;
+         }
+       }
+       else
+       {
+           printf("No hay memoria\n");
+           return 1;
+       }
+      }
+     
+     printf("\nLa lista ingresada es: \n");
+     p=primero;
+     imprime(p);
+      
+  system("PAUSE");	
+  return 0;
+}
+
+char get(void)
+{
+    int c[2];
+        printf("\n---Nuevo Nodo---\n");
+         printf("Ingrese un entero: ");
+         scanf("%s", c);
+    return c[0];
+}
+
+void imprime(struct nodo *p)
+{
+     if(p!=NULL)
+     {
+        while(p!=NULL)
+        {
+           printf("%c\n", (*p).dato );
+           p=(*p).sig;
+        }
+     }
+     else
+     {
+         printf("La lista esta vacia\n");
+     }
+}
+
+
+/* 3) Se desea administrar una lista dinámica simple. Los nodos contienen  Apellido
+ y edad de personas. Generar un programa con un menú que permita:
+- Guardar un nodo. 
+- Borrar un nodo
+- Mostrar su contenido por pantalla.*/
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{
+       int edad;
+       char apellido[30];
+       struct nodo *sig;
+};
+
+int menu(void);
+void imprime(struct nodo *);
+
+int main()
+{
+    struct nodo *p, *primero, *actual, *previo;
+    int opcion, info;
+    
+    primero=NULL;
+    
+    do
+    {
+        opcion=menu();
+        switch (opcion)
+        {
+               case 1:
+                    p=(struct nodo*)malloc(sizeof(*p));
+                    if( p!=NULL )
+                    {
+                        printf("\n---Nuevo Nodo---\n");
+                        printf("Ingrese apellido: ");
+                        scanf("%s", (*p).apellido );
+                        printf("Ingrese edad: ");
+                        scanf("%d", &(*p).edad);
+                        (*p).sig=NULL;
+                        
+                        previo=NULL;
+                        actual=primero;
+                        while ( actual !=NULL && (*p).edad>(*actual).edad )
+                        {   
+                            previo=actual;
+                            actual=(*actual).sig; 
+                        }
+
+                        if( previo==NULL ) // el dato es el nuevo primero o el más pequeño de todos
+                        {
+                            (*p).sig=primero;
+                            primero=p;
+                        }
+                        else 
+                        { 
+                              (*previo).sig=p;
+                              (*p).sig=actual;
+                        }
+                    }
+                    else
+                    {
+                        printf("No hay memoria\n");
+                        return 1;
+                    }
+                    break;
+               case 2:
+                    if(  primero!=NULL )  // averigua si hay nodos en la estructura
+                    { 
+                         printf("Ingresar el nodo a borrar\n");           
+                         scanf ( "%d",&info); 
+                         if( info==(*primero).edad)
+                         { 
+                             p=primero;
+                             primero=(*p).sig;
+                             free(p);
+                         }
+                         else 
+                         { 
+                              previo=primero;
+                              actual=(*primero).sig;           // se posicionan los punteros para la búsqueda    
+                         }
+                         while ( actual!=NULL &&  (*actual).edad!=info)
+                         {   
+                              previo=actual;
+                              actual=(*actual).sig; }
+
+                              if( actual!=NULL ) 
+                              { 
+                                  p=actual;
+                                  (*previo).sig= (*actual).sig;
+                                  free(p);
+                              }
+                              else     
+                              {
+                                   printf ("no lo encontró\n");
+                              }                
+                         } 
+                     else 
+                     { 
+                          printf ( " lista vacia");
+                     }
+                    break;
+               case 3:
+                    if(primero!=NULL)
+                    {
+                          p=primero;
+                          imprime(p);
+                    }
+                    else
+                    {
+                        printf("La lista esta vacia\n");
+                    }
+                    break;
+               case 4:
+                    system("CLS");
+                      printf("FIN DEL PROGRAMA\n\n");
+                    break;
+               default:
+                    system("CLS");
+                      printf("¡ERROR! INgrese una opcion valida\n");
+                    break;
+        }
+    }while(opcion!=4);
+  
+  
+  system("PAUSE");	
+  return 0;
+}
+
+int menu(void)
+{
+    int n;
+        printf("\n---MENU---\n");
+        printf("1. Ingresar nodo\n");
+        printf("2. Borrar Nodo\n");
+        printf("3. Imprimir\n");
+        printf("4. Salir\n");
+        printf("\nIngrese opcion: ");
+        scanf("%d", &n);
+    return n;
+}
+
+void imprime(struct nodo *p)
+{
+     if(p!=NULL)
+     {
+        while(p!=NULL)
+        {
+           printf("Apellido: %s  ---  Edad: %d\n", (*p).apellido, (*p).edad );
+           p=(*p).sig;
+        }
+     }
+     else
+     {
+         printf("La lista esta vacia\n");
+     }
+}

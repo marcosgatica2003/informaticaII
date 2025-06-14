@@ -1,0 +1,56 @@
+/*2) Codificar un programa que permita
+ cargar una pila dinámica con N caracteres
+  ingresados desde el teclado. Recorrerla y mostrar su contenido por pantalla*/
+# include<stdio.h>
+# include<stdlib.h>
+
+struct nodo
+{ int dato;
+  struct nodo *sig;
+};
+
+int tamano(void);
+
+
+int main()
+{ struct nodo *p, *base;
+ int c,tam,i;
+ 
+ base=NULL;
+ 
+ tam=tamano();
+ printf("\n\n");
+ printf("ingresa %d numeors\n\n",tam);
+ 
+ for(i=0;i<tam;i++)   
+ {  p=(struct nodo*)malloc(sizeof(p)*tam);
+    printf("ingresa n %d: ",i+1);
+    scanf("%d",&c);
+    
+     (*p).dato=c ;
+     (*p).sig=base;
+     base=p;
+ 	
+ 	
+ }
+ 
+ printf("la lista almacenada en forma de pila\n\n");
+ while(p!=NULL)
+ {printf("-%d-\n",(*p).dato);
+  p=(*p).sig;
+  
+ }
+ 
+
+
+
+return 0;
+} 
+
+int tamano(void)
+{int tam;
+   printf("ingresa el tamano de la pila\t");
+   scanf("%d",&tam);
+   
+   return tam;
+}

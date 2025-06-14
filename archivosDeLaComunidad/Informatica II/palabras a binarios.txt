@@ -1,0 +1,49 @@
+
+#include <iostream>
+#include<string.h> 
+using namespace std;
+struct byte{                       //siempre se declara un campo de bit dentro de una estructura
+		unsigned a8:1;             //asi se declaran los campos de bit, tipo<campo de bit> : tamaño  de bit
+		unsigned a7:1;             
+		unsigned a6:1;
+		unsigned a5:1;
+		unsigned a4:1;
+		unsigned a3:1;
+		unsigned a2:1;
+		unsigned a1:1;
+			};	
+
+union uni	{               	  // creo la estructura union
+		struct byte b;
+		char c;
+		int n;
+			};
+			
+int main()
+{	union uni x;
+	int count=0,i=0,tam=0;
+	char ca[20];
+	cout<<"ingrese una frase\n";
+	cin>>ca;
+	
+	for(i=0;i<strlen(ca);i++)      // chekeo el tamañano de la palabra ingresada
+	{	tam++;					   // strlen esta funcion permite saber la cantidad de letras q contiene la palabra
+	}
+	i=0;
+do{
+	x.n=ca[i];                    //  transforma las letras ingresadas en binario
+	cout<<"la letra en binario es=";
+	cout<<x.b.a1<<x.b.a2<<x.b.a3<<x.b.a4<<x.b.a5<<x.b.a6<<x.b.a7<<x.b.a8<<endl;  //se imprime el numero en binario, union.estructura, campo de bit
+	cout<<"el numero en decimal es=";
+	cout<<x.n<<endl;                    //alimprimir union. variable declarada, se imprime numero binario
+	while(x.n>=1)						//Detecta la cantidad de numeros 1 en el codigo binario
+	{	if((x.n%2)==1)
+		count++;
+		x.n=(x.n)/2;
+	}
+	cout<<"la cantidad de unos en la letra /"<<ca[i]<<"/es=";
+	cout<<count<<endl;
+	i++;
+	}while(i!=tam);
+	return 0;
+}

@@ -1,0 +1,59 @@
+# include<stdio.h>
+# include<stdlib.h>
+
+struct nodo
+{  char dato;
+   struct nodo *der;
+   struct nodo *izq;
+	
+}
+
+
+
+int main()
+{ struct nodo *raiz,*padre;
+  int c;
+ 
+ raiz=(struct nodo*)malloc(sizeof(*raiz));
+ 
+(*raiz).dato=entero();
+(*raiz).izq=NULL;
+(*raiz).der=NULL;
+
+printf("ingrese numero\n");
+
+//busco el nodo libre
+while( (c=entero()) !=707 )
+{
+	
+}
+
+
+ 
+
+
+
+return 0;
+}
+
+int entero(void)
+{int i;
+   scanf("%d",&i);
+   return i;
+}
+
+
+
+//forma de imprmir de la profe
+void in_orden(struct nodo**)  //ptro=raiz
+{if(& ptro!=08)
+   { in_orden(&(*puntero).izq)
+     printf("%d"&(*denpuntero).dato);
+     
+     in_orden(&(*ptro).der)
+   } //cierro if
+	
+	
+} //cierro funcion
+
+

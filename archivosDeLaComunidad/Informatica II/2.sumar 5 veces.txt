@@ -1,0 +1,47 @@
+//2).Cargar 5 veces con datos desde el teclado, y determinar la mayor suama
+
+#include <iostream>
+using namespace std;
+
+
+class entero
+{      int a;
+	   int b;
+	   
+	   public:
+	   			entero(){a=0;b=0;};
+	   			void ingresar();
+	   			int suma();
+	   			
+};
+
+void entero::ingresar()
+{  
+   cout<<"\n\nIngresa un primer n: ";  cin>>a;
+   cout<<"\nIngresa un segundo n: "; cin>>b;
+}
+
+int entero::suma()
+{ return (a+b);
+}
+
+
+
+int main() 
+{   class entero  p;
+    int i,aux=0,aux1;
+
+ for(i=0;i<5;i++)
+  {  p.ingresar();
+	 cout<<"\nLa  "<<i+1<<"  suma es:"<<p.suma();
+	 if( p.suma()>aux)
+	    { aux=p.suma();
+	      aux1=i+1;
+	    }
+  }
+  cout<<"\n\nla mayor suma es:"<<aux<<"\n\nFue la  "<<aux1<<"  suma ingresada"; 	 
+	
+	
+	
+	return 0;
+}

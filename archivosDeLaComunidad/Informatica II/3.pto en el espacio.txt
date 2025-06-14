@@ -1,0 +1,146 @@
+/*2) crear un punto (espacio bidimensional)como un objeto. si disponible de:
+    a- un costructo para inicializar en cordenadas (0,0)
+    b- un metodo para  agregar coordenadas desde el teclado
+    c-un metodo para mostrar corrd por pamtalla en main
+    d- un metodo q calcula la distancia del punto al al origen del sistema
+    e- un metodo q det si el punto esta sobre un eje coord
+    f- un etodo q deter en q cuadrante se encuentra, cuando no esta sobre un eje
+    
+    en el main se creara un inst de calse punto, el programa se ejecutara 5 veces, det la mayor y menor 
+    distancia al origen del sist de los coord ingresadsos*/
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class punto
+{    private:
+           int cordx;
+           int cordy;
+       
+       public:
+       	    punto();
+        	 int  iniciar();
+        	 void mostrar();
+        	 float distancia();
+        	 int eje();
+        	 int cuadrante();
+       	       
+  
+};
+
+punto::punto()
+{ cordx=0;
+  cordy=0;
+}
+
+int  punto::iniciar()
+{ cout<<"\nIngresa la cordenada en x: ";  cin>>cordx;
+  cout<<"\nIngresa la cordenada en y: ";  cin>>cordy;
+  
+
+}
+void punto::mostrar()
+{  cout<<"\n\nx :"<<cordx;
+   cout<<"\n\ny :"<<cordy;
+   
+}
+
+float punto::distancia()
+{ return (sqrt(  pow(cordx,2)+pow(cordy,2)));
+}
+
+int punto::eje()
+{  int test=0;
+    if(cordx==0)
+     { cout<<"\n\nSe encuentra en el eje y";
+       test=1;
+     }
+   if(cordy==0)
+     { cout<<"\n\nSe encuentra en el eje x";
+       test=1;
+     }   
+     
+     return test;
+     
+}
+
+int punto::cuadrante()
+{ /*pos: devuelve un entero correspondiente al n de cuadrante*/
+  int test=0;
+     if(cordx>0)
+      {   if(cordy>0)
+             { test=1;
+               cout<<"\nSe encuentra en el 1 cuadrente";
+             }
+           else 
+		      { test=4;
+		         cout<<"\nSe encuentra en el 4 cuadrente";
+		      }  
+      }
+      
+      else
+      {   if(cordy>0)
+             { test=2;
+                cout<<"\nSe encuentra en el 2 cuadrente";
+             }
+           else 
+		      { test=3;
+		         cout<<"\nSe encuentra en el 3 cuadrente";
+		      }
+      }
+	return test;
+}
+
+
+
+int main()
+{   class punto p=punto();
+    int test,i;
+	float aux=0,max=0,min=999;
+   
+   cout<<"Bienvenido\n\n";
+   
+   for(i=0;i<5;i++)
+   { test=0;
+   	 
+    p.iniciar();
+    cout<<"\n Las cordenadas ingresadas son :";
+	p.mostrar(); 
+	cout<<"\n\n la distancia es: "<<p.distancia();
+	if(p.distancia()>aux)
+	   {aux=p.distancia();
+	      if(aux>max)
+		     { max=aux;
+		     } 
+		   if(aux<min)
+		      { min=aux;
+		      }
+		      
+		        
+	   }
+	
+	if ( p.eje()!=0)
+	   { test=1;
+	   }
+	else
+	 {  cout<<"\n\nEl pto no esta en los ejes cordenados";
+	 };   
+	 
+	 if(test==0)
+	     {  p.cuadrante();
+	        
+	     }
+	  cout<<"\n\n\n";   
+	     
+	     
+ }
+	 
+	cout<<"\n\nLa mayor distancia:"<<max;
+	cout<<"\nLa menor distancia:"<<min;
+ 
+  return 0;
+}
+
+//pre: significa q es lo q necesita ingresar
+ // pos: lo q el programa va a dar

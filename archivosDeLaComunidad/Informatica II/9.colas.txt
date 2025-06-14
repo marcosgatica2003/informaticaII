@@ -1,0 +1,131 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct nodo
+{
+int dato;
+struct nodo *sig;
+};
+int getint(void);
+void imprime(struct nodo *);
+
+int main()
+{
+	struct nodo *p, *q, *base, *p2, *q2, *base2;
+	int n, flag, cont;
+
+	//ingreso la primera cola
+	p=(struct nodo*)malloc(sizeof(*p));
+	if(p!=NULL)
+		{
+			if( (n=getint()) != 0)
+				{
+					 base=p;
+					(*p).dato=n;
+					(*p).sig=NULL;
+						while( (n=getint()) != 0)
+							{
+									q=(struct nodo*)malloc(sizeof(*q));
+									if(q!=NULL)
+											{
+												(*q).dato=n;
+												(*q).sig=NULL;
+												(*p).sig=q;
+													p=q;
+											}
+									else
+										{
+											printf("No hay memoria\n");
+											return 1;
+										}
+							}
+				}	
+			else
+				{  printf("\nLa lista quedo vacia\n");
+				}
+        }
+	else
+		{ printf("No hay memoria\n");
+		  return 1;
+		}
+//creo cola sin elementos repetidos
+p=base;
+flag=0;
+cont=0;
+while(p!=NULL)
+{
+	q=(*p).sig;
+	while( q!=NULL )
+		{
+				if( (*p).dato==(*q).dato)
+				{
+						flag=1;
+				}
+				q=(*q).sig;
+		}
+		if(flag!=1)
+			{
+				if(cont==0)
+					{
+						p2=(struct nodo*)malloc(sizeof(*p2));
+						if(p2!=NULL)
+							{
+								base2=p2;
+								(*p2).dato=(*p).dato;
+								(*p2).sig=NULL;
+							}
+						else
+							{
+								printf("No hay memoria\n");
+								return 1;
+							}
+					}
+				else
+					{
+						q2=(struct nodo*)malloc(sizeof(*q2));
+						if(q2!=NULL)
+							{
+								(*q2).dato=(*p).dato;
+								(*q2).sig=NULL;
+								(*p2).sig=q2;
+									p2=q2;
+							}
+						else
+							{
+									printf("No hay memoria\n");
+									return 1;
+							}
+					}
+				cont++;
+			}
+p=(*p).sig;
+flag=0;
+}
+
+//imprimo la primera cola ingresada
+system("CLS");
+printf("La estructura original es: \n");
+imprime(base);
+printf("\n\nLa estructura sin elementos iguales es: \n");
+imprime(base2);
+
+system("PAUSE");
+return 0;
+}
+
+int getint(void)
+{
+int n;
+printf("--- Nuevo Nodo ---\n");
+printf("Ingrese entero: ");
+scanf("%d", &n);
+printf("\n\n");
+return n;
+}
+void imprime(struct nodo *p)
+{
+while(p!=NULL)
+{
+printf("%d\n", (*p).dato);
+p=(*p).sig;
+}
+}

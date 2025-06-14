@@ -1,0 +1,10 @@
+1) Con su fecha de nacimiento y su documento genere una cadena
+17/06/92 36355542 -> 1 7 0 6 9 2 3 6 3 5 5 5 4 2
+e introduzcala en un arbol binario. Dibuje el arbol binario a medida q se ingresan los datos, 
+descarte duplicados y muestre como seria su recorrido inOrden. No haga el código en C/C++.
+
+2)Sobrecarga del operador multiplicacion * para clase q representan complejo, sean sus objetos a , 
+b y c de tal forma q sea posible c = a * b
+
+3)(Aca m cago ¬¬) Puerto paralelo ,sus direcciones en memoria, sus interrupciones , registros de inicializacion
+ y control y como se lo configura en C

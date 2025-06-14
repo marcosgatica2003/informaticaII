@@ -1,0 +1,68 @@
+1) Se desea codificar una cola dinámica. Los nodos contienen números enteros. Cargar la pila con 10 nodos, recorrerla y mostrar su contenido por pantalla.
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 10
+struct nodo
+{ int num;
+	struct nodo *sig;
+};
+
+int main()
+{ struct nodo *q,*p,*base;
+  int n,i;
+  
+  base=q=p=NULL;
+  
+  printf("\n\t Este programa ordena %d numeros en foram de cola\n",tam);
+  printf("\n");
+  p=(struct nodo*)malloc(sizeof(*p)); 
+  if(p==NULL)
+   { printf("no hay memoria =(\n");
+     return 1;
+   }
+  else
+  {  printf("q numero elejis?");
+    scanf("%d",&n);
+    printf("\n");
+    
+    (*p).num=n;
+    (*p).sig=NULL;
+    base=p;
+  }
+  
+  for(i=0;i<tam-1;i++)
+  {    q=(struct nodo*)malloc(sizeof(*q));
+          printf("q numero elejis?");
+           scanf("%d",&n);
+           printf("\n");
+    
+       if(q==NULL)
+       {  printf("no hay memoria =s\n");
+         return 1;
+       }
+   	   else
+   	   {  (*q).num=n;
+		  (*q).sig=NULL; 
+		  (*p).sig=q;
+		  
+		  p=q;
+   	      
+   	      
+   	   }
+  }
+
+
+
+printf("los numeros ordenados en forma de cola son:\n\n");
+p=base;
+while(p!=NULL)
+{ printf("\t%d\t",(*p).num);
+  
+  p=(*p).sig;
+}
+
+printf("\n");
+    system("PAUSE");
+	return 0;
+}

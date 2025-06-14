@@ -1,0 +1,62 @@
+/*2)	Desarrollar un programa que permita declarar un arreglo dinámico de 20 
+elementos de tipo entero. Se desea generar otro con los
+ contenidos del arreglo origen cuyos elementos sean impares positivos. 
+ Mostrar el contenido de los dos arreglos por pantalla.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 5
+
+
+
+int main(int argc, char *argv[]) 
+{
+int *p,*q,i,tam1=0,j;
+
+
+p=(int*)malloc(sizeof(int)*tam);
+   printf("ingresa los numeros enteros\n");
+
+                 for(i=0;i<tam;i++)
+				{  do
+				   {
+				       printf("NUMERO %d: \t",i);
+				       scanf("%d",(p+i));
+				       
+				   }while(*(p+i)<0);    
+				}
+
+ for(i=0;i<tam;i++)
+ {    if( pow(-1,*(p+i)) == -1)     //si el numero ingresado es el exponente de -1, si es par va a dar 1, si es impar va a dar -1
+        { tam1++;
+        }
+        
+ }
+q=(int*)malloc(sizeof(int)*tam1);
+
+for(i=0;i<tam;i++)
+ {    if( pow(-1,*(p+i)) == -1)
+        { *(q+j)=*(p+i);
+           j++;
+        }
+        
+ }
+
+  printf("los numeros impares son \n");
+  
+  for(i=0;i<tam1;i++)
+  { printf("n: %d\n " ,*(q+i));
+  }
+
+
+
+
+
+
+
+
+system("PAUSE");
+	
+	return 0;
+}
+

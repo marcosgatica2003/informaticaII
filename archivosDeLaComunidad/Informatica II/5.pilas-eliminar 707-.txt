@@ -1,0 +1,63 @@
+/*5) Se desea codificar una pila dinámica. Los nodos contienen números enteros.
+ Se deberá cargarla hasta que el usuario decida dejar
+ de hacerlo, mediante ingreso por teclado. Recorrerla y mostrar por pantalla la
+  mitad inferior del contenido de la estructura.*/
+  
+# include<stdio.h>
+# include<stdlib.h>
+
+struct nodo
+{  int dato;
+  struct nodo *sig;
+};
+
+
+
+
+int main()
+{ struct nodo *p, *base1;
+  int c,tam=0,tam1,i; 
+ 
+ base1=NULL;
+
+printf("ingresa un numero, -707- para terminar de cargar\n\n");
+while(c!=707)
+{    p=(struct nodo*)malloc(sizeof(*p));
+    
+     if( p==NULL)
+     { printf("no hay memoria\n");
+       return 1;
+     }
+    printf("ingresa n:\t");
+    scanf("%d",&c);
+    
+    (*p).dato=c;
+    (*p).sig=base1;
+     base1=p;
+     tam++;
+     
+     
+ 
+	
+	
+}
+ 
+ printf("los numeros organizados en forma de pila, sin considerar el 707 \n\n");
+tam1=tam/2;
+
+
+    
+ for(i=0;i<tam1+1;i++)
+ {  
+     
+ 	      printf("%d\n",(*p).dato);
+ 	      p=(*p).sig;
+     
+ 	
+ 	   
+       
+}
+
+
+return 0;
+} 

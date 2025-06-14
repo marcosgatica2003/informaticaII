@@ -1,0 +1,92 @@
+/*lista simple de numeros enteros ordenada en forma creciente*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{
+	int dato;
+	struct nodo *sig1;
+	struct nodo *sig2;
+};
+
+int main()
+{ struct nodo *base1,*base2,*p,*q;
+  int num;
+ 
+p=NULL;    q=NULL; 
+base1=NULL;
+base2=NULL;
+
+printf("\t\t Lista doble :D (para salir ingrese 707)\n\n");
+
+p=(struct nodo*)malloc(sizeof(*p));
+base1=p;
+base2=p;
+ if( p==NULL)
+    { printf("No tenemos memoria\n"); return 1;
+    }
+  else
+     {     printf("Cual es tu numero?  ");scanf("%d",&num);
+           
+           (*p).dato=num;
+		   (*p).sig1=NULL;
+           (*p).sig2=NULL;
+           printf("\n\n");
+           
+           while(num!= 707)
+           {    q=(struct nodo*)malloc(sizeof(*q));
+                 if(q==NULL)
+                     {printf("No tenemos memoria\n"); return 1;
+                     }
+                  else
+				      {       printf("Cual es tu numero?  ");scanf("%d",&num); 
+				              (*q).dato=num;
+				              (*q).sig1=NULL;
+				              (*p).sig1=q;
+				              (*q).sig2=p;
+				               base2=q;
+				               p=q;
+				               printf("\n\n");
+				     }   
+                     
+          }
+     }  
+
+system("CLS");
+printf("Numeros en forma de pila:\n\n");
+while(p!=NULL)
+    {  if( (*p).dato!=707)
+	    {
+	        printf("%d",(*p).dato);
+           
+            printf("\t");
+       }
+        p=(*p).sig2;
+   }
+ 
+ printf("\n\n");   
+printf("Numeros en forma de cola:\n\n");
+p=base1;
+while(p!=NULL)
+    { 	if( (*p).dato!=707)
+		   {
+		    printf("%d",(*p).dato);
+         	 
+         	 printf("\t");
+           }  
+		   p=(*p).sig1;  
+   }  
+ printf("\n\n");  
+
+
+
+
+
+
+    system("PAUSE");
+	return 0;
+}
+ 
+
+ 

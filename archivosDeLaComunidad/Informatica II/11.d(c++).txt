@@ -1,0 +1,49 @@
+/*11)	Implementar un programa que permita mediante una función calcular 
+el volumen de una caja. El método dispone de argumentos predeterminados para 
+calcular el volumen de una caja de 1x1x1.
+             
+			  int calcula_volumen ( int largo =1, int ancho =1,int alto = 1); /*prototipo de una 
+                                                                              función con parámetros
+                                                                               predeterminados 
+
+Se desea invocar el método de la siguiente manera:
+
+d)	Llamar a la función pasando los 3 parámetros con valores tomados desde el teclado desde el main.
+vol = calcula_volumen (a, b, c ); 
+
+*/
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int calcula_volumen ( int largo=1, int ancho=1, int alto= 1)
+{ int vol;
+
+  vol=(largo*ancho*alto);
+   
+   return vol;
+  
+};
+
+
+int main(int argc, char *argv[]) 
+{ int v,lar,anc,alto;
+  
+  printf("este programa calcula en volumen ingresando el largo  ancho y alto\n\n");
+  
+  printf("ingresa el largo\n");
+  scanf("%d",&lar);
+  printf("ingresa el ancho\n");
+  scanf("%d",&anc);
+  printf("ingresa el alto\n");
+  scanf("%d",&alto);
+  
+    v=calcula_volumen(lar,anc,alto);
+    
+	  printf("el volumen es %d\n",v);
+ 
+    system("PAUSE");
+	return 0;
+}

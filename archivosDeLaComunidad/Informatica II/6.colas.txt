@@ -1,0 +1,214 @@
+/*6) Leer y almacenar en un arreglo estático los nombres de N alumnos,
+ junto con su promedio general y un entero que represente el número de inasistencias a clase.
+Generar una cola dinámica con la información del arreglo. Recorrerla y mostrar mediante un menú, las siguientes opciones:
+a)	la información del nodo que contiene el promedio mayor
+b)	la información del nodo que tiene menor número de inasistencias.
+c)	Los nombres de los alumnos cuyo promedio sea mayor a 7.00.
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct nodo
+{  char nombre[100];
+   float promedio;
+   int faltas;
+   struct nodo *sig; 
+	
+};
+
+
+float prom(void);
+int falt(void);
+
+
+int main() 
+{ struct nodo *p,*q,*base;
+  int op,faltas,aux2=9999;
+  float promedio,aux1=0;
+  
+   
+   q=p=base=NULL;
+
+do
+{
+
+printf("\t--------MENU---------\n\n");
+printf("1. Ingresar datos (para terminar de cargar ingrese <-1> en promedio \n");
+printf("2. Mostrar datos\n");
+printf("3. Mostrar informacion del promedio mayor\n");
+printf("4. Mostrar informacion del menor n° de faltas\n");
+printf("5. Mostrar los nombres de los alumnos con promedio mayor a 7\n");
+printf("6. Salir\n");
+printf("\nOpcion:   ");scanf("%d",&op);
+printf("\n\n");
+system("CLS");
+
+switch(op)
+  {    case 1:     p=(struct nodo*)malloc(sizeof(*p));
+                   base=p;
+                   if (p==NULL)
+                        {  printf("No hay memoria\n"); return 1;
+                        }
+                   else
+                        {   if( promedio != -1)  
+						    {
+						        printf("-----Nuevo Nodo-----\n");
+							    printf("Cual es tu nombre?: ");
+                                scanf("%s",(*p).nombre);
+                                
+                                 promedio=prom();
+                                (*p).promedio=promedio;  
+                                     if((*p).promedio>aux1)
+                                        { aux1=(*p).promedio;
+                                        }
+                                 
+							    faltas=falt();
+								(*p).faltas=faltas; 
+								      if(  (*p).faltas<aux2)
+									      {  aux2=(*p).faltas;
+									      }                                 
+                                (*p).sig=NULL;
+                                printf("\n\n");
+                                 while( promedio!= -1)
+                                         {      q=(struct nodo*)malloc(sizeof(*q));
+                                                 if(q==NULL)
+                                                     { printf("no hay memoria\n"); return 1;
+                                                     }
+                                                  else 
+												      {     printf("-----Nuevo Nodo-----\n");
+													        printf("Cual es tu nombre?: ");
+                                							scanf("%s",(*q).nombre);
+                                						    promedio=prom();
+                                							(*q).promedio=promedio; 
+                                							   if( (*q).promedio>aux1)
+                                							       {  aux1=(*q).promedio;
+                                							       }
+							    							faltas=falt();
+															(*q).faltas=faltas;   
+															    if( (*q).faltas<aux2)
+																    { aux2=(*q).faltas;
+																    }                               
+                                							
+															 
+															 (*q).sig=NULL;
+															 (*p).sig=q;
+															 p=q;
+															 printf("\n\n");   
+												      	
+												      	
+												      }   
+                                         }
+                                
+                                
+                           }
+                        }
+                        break;
+                        
+                        
+                case 2:    printf("Datos en forma de cola\n\n");
+                           p=base;
+                           while(p!=NULL)
+                               { if( (*p).promedio != -1)	
+							      {
+							      printf("Nombre: %s",(*p).nombre);
+                                  printf("\n");
+                                  printf("Promedio: %.2f",(*p).promedio);
+                                  printf("\n");
+                                  printf("Faltas: %d",(*p).faltas);
+                                  printf("\n");
+								  p=(*p).sig;
+								  printf("\n\n");
+
+                                 }
+							   }
+                             
+							 break;
+							   
+				case 3:
+				  printf("El Nodo con el mayor promedio es:\n\n");
+				  p=base;                      
+                  while(p!=NULL)
+			                {  if( (*p).promedio == aux1)
+			                      {       		 
+								         printf("Nombre: %s",(*p).nombre);
+								         printf("\n");     
+                                  		 printf("Promedio: %.2f",(*p).promedio);
+                                 		 printf("\n");              
+                                  		 printf("Faltas: %d",(*p).faltas);
+                                  		 printf("\n");         
+			                    
+					             }
+
+			                      p=(*p).sig;
+			                }break;
+			                
+			                
+			      case 4:          
+			                 printf("El nodo con el menor n° de faltas es: \n\n");
+							 p=base;                      
+                 		    while(p!=NULL)
+			                {  if( (*p).faltas == aux2)
+			                      {       		 
+								         printf("Nombre: %s",(*p).nombre);
+								         printf("\n");     
+                                  		 printf("Promedio: %.2f",(*p).promedio);
+                                 		 printf("\n");              
+                                  		 printf("Faltas: %d",(*p).faltas);
+                                  		 printf("\n");         
+			                    
+					             }
+
+			                      p=(*p).sig;
+			                }break;
+			                
+			          
+					case 5:  
+					        printf("El nodo con un promedio mayor a 7 es: \n\n");
+							 p=base;                      
+                 		    while(p!=NULL)
+			                {  if( (*p).promedio>=7 )
+			                      {       		 
+								         printf("Nombre: %s",(*p).nombre);
+								         printf("\n");     
+                                  		 printf("Promedio: %.2f",(*p).promedio);
+                                 		 printf("\n");              
+                                  		 printf("Faltas: %d",(*p).faltas);
+                                  		 printf("\n\n");         
+			                    
+					             }
+
+			                      p=(*p).sig;
+			                }break;       
+			                
+  }
+	
+	
+	
+
+
+
+
+}while(op!=6);	
+	system("PAUSE");
+	return 0;
+}
+
+
+float prom(void)
+{  float p;
+          do   
+		{
+			 printf("Cual es tu promedio?: ");
+             scanf("%f",&p);
+       }while( p<=-2  ||  p>10);
+		     return p;
+}
+
+int falt(void)
+{ int f;
+        printf("Tu numero de faltas?: ");
+       scanf("%d",&f);
+        return f;
+}
+

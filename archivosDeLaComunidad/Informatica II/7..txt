@@ -1,0 +1,73 @@
+/*7)	Se desea desarrollar un programa que permita declarar una tabla de 3
+ filas por 3 columnas de números enteros. Se desea recorrerla  mediante un procedimiento
+ y generar un arreglo con los elementos que están dispuestos en la diagonal secundaria.
+  El arreglo se muestra desde el programa principal..*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define tam 9
+
+void imprimir(int *q);
+int pasaje(int *p);
+
+int main()
+ { int *p,i,*q;
+ 
+   printf("ingresa una matriz 3x3\n");
+   
+   p=(int*)malloc(sizeof(int)*tam);
+   q=(int*)malloc(sizeof(int)*3);
+   
+   for(i=0;i<tam;i++)
+   {     printf("caracter :[%d] ",i+1);
+          scanf("%d", (p+i));
+          printf("\n");
+		     	
+   }
+   
+   printf("la matriz original :\n");
+   imprimir(p);
+    printf("\n");
+   
+   q=pasaje(p);
+   
+   printf("la diagonal secundaria es :\n");
+   
+   
+   for(i=0;i<3;i++)
+   { printf("%d-",*(q+i));
+   }
+     printf("\n");
+     
+	
+	
+	
+	system("PAUSE");
+	return 0;
+}
+
+void imprimir(int *q)
+{ int i,j;
+
+     for(i=0;i<3;i++)
+     {   for(j=0;j<3;j++)
+	      {
+	            printf("%d\t", *(q+(i*3)+j));
+	      
+	     }  printf("\n");
+     }
+	
+}
+
+int pasaje(int *p)
+{int i,j=0,*q;
+ 
+ q=(int*)malloc(sizeof(int)*3);
+    
+     for(i=1;i<=6;i++)
+     {  *(q+j)=*(  p+(i*2));  
+                 j++;
+     }
+	
+	return q;
+}

@@ -1,0 +1,89 @@
+/*
+ * GuiaPolim_Ej23.cxx
+ * 
+ * Copyright 2012 Sal <saul@ubuntu>
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ * 
+ * 
+ */
+
+
+#include <iostream>
+using namespace std;
+
+class vehiculo
+{	protected:
+		int ano;
+		int costo;
+	public:
+		vehiculo(int a, int b); 	//constructor
+		virtual void carga(int a, int b, int c);
+		virtual void muestra(void);		// Siempre virtual en la BASE	
+};
+
+class vehic_terr: public vehiculo
+{	private:
+		int kilom;
+	public:
+	void carga(int a, int b, int c);
+	void muestra(void){cout<<ano<<costo<<kilom<<endl;};			// Misma funcion sin virtual, estoy en la derivada
+	vehic_terr(int a, int b, int c);
+};
+
+class vehic_aereo: public vehiculo
+{	private:
+		int horasv;
+	public:
+	void carga(int a, int b, int c);
+	void muestra(){cout<<ano<<"\t"<<costo<<"\t"<<horasv<<endl;};			// Misma funcion sin virtual, estoy en la derivada
+	vehic_aereo(int a, int b,int c);
+};
+
+vehiculo::vehiculo(int a, int b)
+{ano=a;
+costo=b;}
+
+vehic_terr::vehic_terr(int a, int b, int c):vehiculo(a,b)
+{kilom=c;}
+
+vehic_aereo::vehic_aereo(int a, int b, int c):vehiculo(a,b)
+{horasv=c;}
+
+int main(int argc, char **argv)
+{	int c,d,e, op=0;
+	class vehiculo **v;
+	v = new vehiculo*[3];
+	v[0]= new vehiculo(0,0);
+	v[1]= new vehic_terr(0,0,0);
+	v[2]= new vehic_aereo(0,0,0);
+	cout<<"Menu:"<<endl<<"Que desea ingresar?"<<endl;
+	cout<<"1.Terrestre"<<endl<<"2.Aereo"<<endl;
+	cin>>op;
+	cout<<"ingrese año:"<<endl;
+	cin>>c;
+	cout<<"Ingrese costo:"<<endl;
+	cin>>d;
+	cout<<"Ingrese kilometraje u hora de vuelo:"<<endl;
+	cin>>e;
+	v[op]->carga(c,d,e);
+	cout<<"Los datos ingresados son:"<<endl;
+	cout<<"Año   Costo   Kilom/Hora"<<endl;
+	v[op]->muestra();
+	cout<<"Fin del programa"<<endl;
+	return 0;
+}
+

@@ -1,0 +1,2 @@
+8)crear una cola dinamica recorrerla y mostrar en pantalla solo las posiciones impares;
+9)crear a partir de una cola dinamcia una pila, recorrerla y mostrarla;

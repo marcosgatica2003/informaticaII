@@ -1,0 +1,141 @@
+
+
+
+/*codificar un programa q defina una clase, q contenga un par ordenado x,y, 
+y una funcion constructor, mas una funcion para imprimir los valores*/
+
+#include <iostream>
+using namespace std;
+
+class punto
+{  protected:                // estado intermedio entre privadas y publicas , q va a permitir q e lnuevo codigo q agregemos la vea
+	        float x;
+            float y;
+            
+     
+     public: 
+            punto(float a,float b){x=a; y=b; };
+            void ingresar();
+            void imprimir();
+};
+
+class terna:/*suele ponerce public*/ punto                       //asi de da cuenta e l compilador q es uan clase derivada q deciende de punto   
+{ float z;
+  public:
+         terna(float k, float l, float m):punto(k,l)
+         {z=m;}
+         
+         void ingresar();
+         void imprimir();
+};           
+
+
+
+void punto::ingresar()
+{  cout<<"ingresa x:"; cin>>x;
+   cout<<"\ningresa y:"; cin>>y;
+   
+   
+}
+
+
+void punto::imprimir()    // de punto
+{   cout<<"\nx:"<<x;
+    cout<<"\ny:"<<y;
+    cout<<"\nel par ordenado es:("<<x<<":"<<y<<")";
+ 
+}
+
+void terna::imprimir()     // de terna
+{ cout<<"\nel par ordenado de terna  es:("<<x<<":"<<y<<":"<<z<<")";
+}
+
+
+int main()
+{   class punto p=punto(2,2);
+    class terna t=terna(2,2,3);
+    
+    
+    p.imprimir();
+    t.imprimir();
+    return 0;
+}
+
+version 2:
+
+
+
+
+/*codificar un programa q defina una clase, q contenga un par ordenado x,y, 
+y una funcion constructor, mas una funcion para imprimir los valores*/
+
+#include <iostream>
+using namespace std;
+
+class punto
+{  protected:                // estado intermedio entre privadas y publicas , q va a permitir q e lnuevo codigo q agregemos la vea
+	        float x;
+            float y;
+            
+     
+     public: 
+            punto(){x=y=0;};
+            void ingresar();
+            void imprimir();
+};
+
+class terna:public punto                       //asi de da cuenta e l compilador q es uan clase derivada q deciende de punto   
+{ float a,b,z;
+  public:
+         terna():punto()
+         {cout<<"\ningresa z:"; cin>>z;
+          a=x;b=y;};
+         
+         void imprimir();
+};           
+
+void punto::ingresar()
+{  cout<<"ingresa x:";  cin>>x;
+   cout<<"\ningresa y:"; cin>>y;
+    
+}
+
+
+
+void punto::imprimir()    // de punto
+{   
+    cout<<"\nel par ordenado es:("<<x<<":"<<y<<")";
+ 
+}
+
+
+
+int main()
+{   
+    class punto p;
+    class terna t;
+    
+    p.ingresar();
+    
+    p.imprimir();
+    
+    t.imprimir();
+    return 0;
+}
+
+
+
+void terna::imprimir()     // de terna
+{   
+	cout<<"\nel par ordenado de terna  es:("<<a<<":"<<b<<":"<<z<<")";
+}
+
+
+
+/* modificar el programa anterior para emplear una nueva clase , derivada de la clase terna, q permita utilizar vectores de 4 cordenadas */
+
+
+/* codificar un programa q defina la clase par ( como el anterior), derivar la clase circulo incorporando un parametro para el radio, derivar la clase ciruclo incorporando un 
+ * parametro par ala altura, definir un objeto de la clase cilindro y calcular su volumen, con una funcion miembro*/
+
+

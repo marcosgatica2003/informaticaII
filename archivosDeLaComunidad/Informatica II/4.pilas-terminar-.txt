@@ -1,0 +1,95 @@
+/*3) Se desea codificar una pila dinámica. Los nodos contienen  
+Apellido y edad de personas. Cargar la pila hasta que se ingrese la edad 999. 
+Se desea recorrerla y mostrar por pantalla la información de los nodos
+  que representen personas mayores de edad  (21 años).*/
+  
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+struct nodo
+{  char nombre[30];
+   int edad;
+  struct nodo *sig;
+};
+
+
+
+
+int main()
+{ struct nodo *p,*q, *base1,*base2;
+  char nom[30];
+  int ed,i; 
+ 
+ base1=NULL;
+ base2=NULL;
+ 
+ 
+ printf("welcome  :D  \npara terminar promgrama -999-\n\n");
+ 
+ while(ed!=999)
+ {
+ 
+ 	   p=(struct nodo*)malloc(sizeof(* p));
+ 	   q=(struct nodo*)malloc(sizeof(*q));
+ 	 
+
+
+        if(p==NULL && q== NULL)
+       {  printf("no hay memoria\n");
+          return 1;
+       }
+  
+ 	   
+ 	   	printf("ingresa la edad: \t");
+    	scanf("%d",&ed);
+        
+        (*q).edad=ed;
+        (*q).sig=base2;
+         base2=q;
+ 	   
+   		printf("ingresa el nombre: \t");
+    	scanf("%s",&nom[i]);  
+    	
+    	strcpy( (*p).nombre,&nom[i]);
+    	(*p).sig=base1;
+         base1=p;
+         
+         i++;
+         
+         printf("\n\n");
+  
+    	
+    
+        
+                 
+}
+
+ printf("la lista almacenada en forma de pila mayores de 21\n\n");
+ 
+ 
+ while(q!=NULL)
+ { 
+
+    
+    if((*q).edad>= 21)
+ 	{	 printf("el nombre es\t: ");
+   	   	 printf("%s\n",(*p).nombre);
+   
+         p=(*p).sig;
+  
+         printf("la edad es\t: "); 
+         printf("%d\n",(*q).edad);
+   
+         q=(*q).sig;
+         printf("\n\n");
+    }
+  
+ }
+ 
+
+
+
+return 0;
+} 
+

@@ -1,0 +1,10 @@
+// 1) suma del profe destafani  mejorado x la profe carrera
+
+ /*#include <isotream>
+
+class entero
+{ int a;
+  int b;
+  
+  public:  */
+             // entero(){ /*cout se ejecuta el constructor*/ a=3; b=4;}       // los valores se lo asigno de prepo, no invoco el constructor y se ejecuta esa es una vondad del enterno,  

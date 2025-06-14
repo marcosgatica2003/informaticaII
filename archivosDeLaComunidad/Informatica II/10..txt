@@ -1,0 +1,82 @@
+/*10)	Se desea desarrollar un programa que permita declarar una tabla de N xN de caracteres.   Se desea desarrollar métodos para:
+a)	Cargar la tabla, se admiten repeticiones
+b)	Recorrer la tabla 
+c)	Generar otra tabla en la cual se hallan reemplazado las repeticiones 
+ por ceros o blancos o cualquier marca de su elección, mediante la cual se pueda identificar el lugar en el cual estaba la repetición. 
+
+Mostrar por pantalla toda la información necesaria  para comprender el proceso que se hace sobre los datos.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void imprimir(int *q, int tam1);
+
+
+
+
+int main()
+ { int i,*p,tam=0,tam2=0,j;
+  
+ 
+ 
+ 
+  printf("Ingresa el tamano de la matriz \n\n ");
+  scanf("%d",&tam);
+  
+  tam2=tam*tam;
+  
+  p=(int*)malloc(sizeof(int)*tam2);
+  
+  for(i=0;i<tam2;i++)
+  {     printf("Elemento [%d]:   ", i+1);
+         scanf("%d",(p+i));
+          
+   }
+    
+ printf("\n\n");
+ 
+printf("la matriz ingresada es :D \n\n");
+ imprimir(p,tam); 
+
+ printf("\n\n");
+  
+
+  
+ // igualo los repetidos a cero 
+for(i=0;i<tam2;i++)
+	{  for(j=i+1;j<tam2;j++)
+	        {if(  *(p+j)==*(p+i) )
+	           {      *(p+i)= 0;
+			          *(p+j)= 0;
+	           }
+	        }
+	}
+
+printf("la matriz con repeticiones remplasadas con 0 es :D \n\n");
+imprimir(p,tam);
+  
+  
+   printf("\n\n");
+ 
+
+	
+	system("PAUSE");
+	return 0;
+}
+
+void imprimir(int *q,int tam1)
+{int j,i;
+
+
+   for(i=0;i<tam1;i++)
+    {
+            for(j=0;j<tam1;j++)
+            {    printf("%d\t", *(q+ ((i*tam1)+j)));
+                
+            }printf("\n");
+   }
+	
+}
+

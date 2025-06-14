@@ -1,0 +1,127 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct nodo
+{
+    int dato;
+    struct nodo *ant;
+    struct nodo *sig;
+};
+
+int getint(void);
+
+void imprime1(struct nodo *);
+
+void imprime2(struct nodo *);
+
+int main()
+{
+    struct nodo *p=NULL, *first=NULL, *last=NULL, *q=NULL;
+    int n, aux;
+    
+    printf("Ingrese datos (0 para terminar)\n");
+    
+    while( (n=getint())!=0 )
+    {
+           p=(struct nodo*)malloc(sizeof(*p));
+           if(p!=NULL)
+           {
+               if(first==NULL)
+               {
+                    (*p).dato=n;
+                    (*p).sig=NULL;
+                    (*p).ant=NULL;
+                    first=p;
+                    last=p;
+               }
+               else
+               {
+                   if( (*last).dato<=n )
+                   {
+                    (*p).dato=n;
+                    (*p).sig=NULL;
+                    (*p).ant=last;
+                    (*last).sig=p;
+                    last=p;
+                   }
+                   else
+                   {
+                       q=p;
+                       (*p).sig=NULL;
+                       (*p).ant=last;
+                       (*last).sig=p;
+                       (*p).dato=n;
+                       while(last!=NULL)
+                       {
+                          if( n<(*last).dato)
+                          {
+                              aux=(*p).dato;            
+                              (*p).dato=(*last).dato;
+                              (*last).dato=aux;
+                          }
+                          last=(*last).ant;
+                          p=(*p).ant;
+                       }
+                       last=q;
+                   }
+               }              
+           }
+           else
+           {
+               printf("No hay memoria\n");
+               return 1;
+           }
+    }
+    system("CLS");
+    printf("Lista al derecho:\n");
+    p=first;
+    imprime1(p);
+    
+    printf("\n\n Lista al reves\n");
+    p=last;
+    imprime2(p);
+    
+   system("PAUSE");
+   return 0;
+}
+
+int getint(void)
+{
+    int n;
+        printf("\n--- Nuevo Nodo ---\n");
+        printf("Ingrese dato: ");
+        scanf("%d", &n);
+    return n;
+}
+
+void imprime1(struct nodo *p)
+{
+     if(p!=NULL)
+     {
+        while(p!=NULL)
+        {
+           printf("%d\n", (*p).dato );
+           p=(*p).sig;
+        }
+     }
+     else
+     {
+         printf("La lista esta vacia\n");
+     }
+}
+
+void imprime2(struct nodo *p)
+{
+     if(p!=NULL)
+     {
+        while(p!=NULL)
+        {
+           printf("%d\n", (*p).dato );
+           p=(*p).ant;
+        }
+     }
+     else
+     {
+         printf("La lista esta vacia\n");
+     }
+}

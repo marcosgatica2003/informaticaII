@@ -1,0 +1,144 @@
+/*4) Se desea codificar una cola dinámica. Los nodos contienen  Apellido, edad y sexo de personas.
+ Cargar la estructura hasta que se ingrese la edad 999. Se desea recorrerla y 
+generar una pila dinámica que solo contenga los nodos pertenecientes a personas que 
+pueden votar del sexo femenino. Mostrar por pantalla.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+struct nodo
+{ char apellido[100];
+  int  edad;
+  int sexo;
+  struct nodo *sig; 
+} ;
+
+int ed (void);
+char apellido(void);
+
+
+int main()
+{  struct nodo *q,*p,*base;
+   int edad,sex;
+   char apellido[100];
+   
+   p=q=base=NULL;
+   
+   
+   printf("Hola :D  para terminar de cargar nodos ingresa -999- en la edad\n\n");
+  
+   p=(struct nodo*)malloc(sizeof(*p));
+   
+   
+   if(p==NULL)
+       { printf("No hay memoria\n");
+         return 1;
+       }
+   else
+       {        printf("---Nuevo nodo---\n\n");
+	             if( (edad=ed()) !=999 )
+	               {      (*p).edad=edad;
+				           
+						   printf("Cual es tu apellido?: ");
+         	               scanf("%s",(*p).apellido);
+         	               printf("\n");
+         	               printf("1.Sexo Masculino\n");
+         	               printf("2.Sexo femenino\n");
+						   printf("Tu sexo es?: ");
+         	               scanf("%d",&sex);
+         	               
+         	               (*p).sexo=sex;
+         	                   
+         	                        	              		
+				   
+				    
+	                     
+	                    
+                         
+						 (*p).sig=NULL;
+         				 base=p;
+         				 
+         				 printf("\n");
+         				 printf("\n");
+         				 printf("---Nuevo nodo---\n\n");
+         				
+         				while(  (edad=ed())!=999)
+         				  {      q=(struct nodo*)malloc(sizeof(*q));
+                                   if(q==NULL)
+                                      { printf("no hay memoria\n");
+                                        return 1;
+                                      }
+                                     
+									else
+									  {     
+									         
+									        (*q).edad=edad;
+									         printf("Cual es tu apellido?: ");
+         	   								 scanf("%s",(*q).apellido);
+         	   								 printf("\n");
+         	               					 printf("1.Sexo Masculino\n");
+         	             					 printf("2.Sexo femenino\n");
+						  					 printf("Tu sexo es?: ");
+         	               					scanf("%d",&sex);
+         	               
+         	               					(*q).sexo=sex;;
+	                                        
+	                                        
+	                                         (*q).sig=NULL;
+	                                         (*p).sig=q;
+	                                         p=q;
+	                                         
+									  }  
+									  printf("\n");
+									  printf("\n");
+         			              	 printf("---Nuevo nodo---\n\n");
+         				  	
+         				  }
+                         
+				     
+	    
+	          	  
+	                 	 
+	               }
+	   								 
+        
+         
+       }
+       
+    
+   
+system("CLS");
+printf("Trabajo impreso  en forma de cola  \n\n");
+
+p=base;
+while(p!=NULL)
+	{    
+	    if((*p).sexo == 2)
+	     {
+	     	printf("Edad: %d\n", (*p).edad);
+			printf("Apellido: %s\n",(*p).apellido);
+			printf("Sexo: femenino\n");
+				printf("\n\n");
+	    } 
+		   p=(*p).sig;
+	}  
+   
+    
+
+
+
+
+    system("PAUSE");
+	return 0;
+}
+
+int ed (void)
+{ int e;        
+         printf("Cual es tu edad?:    ");
+         scanf("%d",&e);
+         printf("\n");
+         
+         return e;
+}

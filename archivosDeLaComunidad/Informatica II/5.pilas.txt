@@ -1,0 +1,124 @@
+5)/*implementar una pila de numeros enteros, 1 ingresa datos,
+ 2 muestra los datos*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+struct nodo
+{ int dato;
+  struct nodo *sig;
+};  
+
+int main()
+{struct nodo *p,*base;
+
+ int a,op;
+ base=NULL;
+ do
+ {
+ printf("ingresa una de las opciones\n\n");
+ printf("1.ingresar numeros\n");
+ printf("2.imprimir datos\n");
+ printf("3.salir\n");
+ scanf("%d",&op);
+
+ 
+ switch (op)
+ {     case 1:
+                  printf("ingresa el numero 707 para terminar\n");
+                  while(a!=707)
+                  { 
+                       p=(struct nodo*)malloc(sizeof(*p));
+                        
+                        scanf("%d",&a);
+                        
+                        (*p).dato=a;
+                        (*p).sig=base;
+                         base=p;
+                  
+                  }break;
+         case 2:
+                  printf("el vector ordenado en  forma de pila es\n");      
+                  while(p!=NULL)
+                  { if((*p).dato != 707)
+
+			{printf("%d\t",(*p).dato);
+                        }
+
+                     p=(*p).sig;
+                }  break;   
+                
+}   
+}while(op!=3);
+                                   
+  system("PAUSE");	
+  return 0;
+}
+
+	
+	system("PAUSE");
+	return 0;
+}
+
+
+5) pero de la profe programa de la profe 3:)
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+struct nodo
+{ int dato;
+  struct nodo *sig;
+};  
+
+int main()
+{struct nodo *p,*primero;
+
+ int sel;
+ primero=NULL;
+ 
+ // se crea el primer nodo
+ 
+ if(p=new(struct nodo)==NULL)
+     {printf("no hay memoria");
+    return 1;
+     }
+ else  // hay memoria
+ { printf ("ingresa n");
+   scanf("%d",&(*p).dato);
+   (*p).sig=primero;
+   primero=p;
+}
+
+ printf("para cont nodos ing 1");
+ scanf("%d",&sel);
+ 
+ while(sel==1);
+ { if((p=new(struct nodo))==NULL)
+    {printf("no memoria");
+     return 1;
+     }
+     
+    else 
+    { printf("ing dato");
+      scanf("%d",&(*p).dato);
+      (*p).sig=primero;
+      primero=p;
+      printf("para ing nodo   1");
+      scanf("%d",&sel);
+    }
+}
+
+p=primero;    // se necesita en ultima instancia      
+
+while(p!=NULL)
+{  printf("%d",(*p).dato);
+  p=(*p).sig;
+}
+return o;
+
+}

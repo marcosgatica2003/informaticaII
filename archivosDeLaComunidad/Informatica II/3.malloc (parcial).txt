@@ -1,0 +1,217 @@
+1. (Ejercicio de parcial) Crear en main un arreglo dinámico de tamaño “n” (admite ingreso de elementos repetidos)  Una función toma el tamaño desde teclado y luego se ingresara los elementos del arreglo por teclado. Se deberá crear otro arreglo que contendrá los elementos sin repetir del arreglo original. Mostrar ambos arreglos por pantalla.
+#include<stdio.h>
+#include<alloc.h>  
+   
+int tamano(void);  
+
+void ingresa_arreglo(int *, int); 
+
+void imprime_arreglo(int *, int);
+
+int i, j;
+     
+int main()
+{
+    int tam1, tam2;
+    int *p1, *p2;
+    
+    tam1=tamano();
+    p1=(int*)malloc(sizeof(int)*tam1);
+    
+    printf("\nIngrese un vector de %d enteros: \n", tam1);
+                      ingresa_arreglo(p1, tam1);
+                      
+    printf("\nEl arreglo ingresado es: \n");
+                      imprime_arreglo(p1, tam1);
+    tam2=0;                 
+    
+    for(i=0 ;i<tam1 ;i++)    //borra elementos repetidos
+    {
+            if( *(p1+i)!='NULL')
+            {
+                for(j=i+1 ;j<tam1 ;j++)
+                {
+                        if( *(p1+i)==*(p1+j) )
+                        {
+                            *(p1+j)='NULL';
+                            tam2++;    //determina cantidad de elementos unicos
+                        }
+                }
+            }
+    }
+    
+    tam2=tam1-tam2;
+    
+    p2=(int*)malloc(sizeof(int)*tam2);
+    
+    j=0;
+    for(i=0 ;i<tam1; i++)
+    {
+            if( *(p1+i)!='NULL')
+            {
+                *(p2+j)=*(p1+i);   //valua el vector de elementos unicos
+                j++;
+            }
+    }          
+    printf("\nEl arreglo modificado es: \n");
+                      imprime_arreglo(p2, tam2);                                                           
+    
+  system("PAUSE");
+  return 0;
+}  
+
+int tamano(void)
+{
+    int a;
+        printf("Ingrese el tamano del vector: ");
+        scanf("%d", &a);
+    return a;
+}
+
+void ingresa_arreglo(int *p, int tam)
+{
+         for(i=0 ;i<tam ;i++)
+         {
+                 printf("\tElemento %d: ", i+1);
+                 scanf("%d", (p+i));
+         }
+}
+
+void imprime_arreglo(int *p, int tam)
+{
+     for(i=0 ;i<tam ;i++)
+     {
+             printf("\t%d. %d\n", i+1, *(p+i));
+     }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O también puede ser escrito como:
+“La diferencia es que el primero borra los elementos repetidos y el segundo deja solo los elementos que no se repitieron y borra el resto”
+
+#include<stdio.h>
+#include<stdlib.h>  
+   
+int tamano(void);  
+
+void ingresa_arreglo(int *, int); 
+
+void imprime_arreglo(int *, int);
+
+int i, j;
+     
+int main()
+{
+    int tam1, tam2, flag;
+    int *p1, *p2;
+    
+    tam1=tamano();
+    p1=(int*)malloc(sizeof(int)*tam1);
+    
+    printf("\nIngrese un vector de %d enteros: \n", tam1);
+                      ingresa_arreglo(p1, tam1);
+                      
+    printf("\nEl arreglo ingresado es: \n");
+                      imprime_arreglo(p1, tam1);
+    tam2=0;                 
+    
+    for(i=0 ;i<tam1 ;i++)    //borra elementos repetidos
+    {
+            if( *(p1+i)!='NULL')
+            {
+                flag=0;
+                for(j=i+1 ;j<tam1 ;j++)
+                {
+                        if( *(p1+i)==*(p1+j) )
+                        {
+                            *(p1+j)='NULL';
+                            tam2++;    //determina cantidad de elementos unicos
+                            flag=1;                       
+                        }
+                }
+                if(flag==1)
+                {
+                     *(p1+i)='NULL';
+                     tam2++;
+                }
+            }
+    }
+    
+    tam2=tam1-tam2;
+if(tam2>0)
+{
+    p2=(int*)malloc(sizeof(int)*tam2);
+    
+    j=0;
+    for(i=0 ;i<tam1; i++)
+    {
+            if( *(p1+i)!='NULL')
+            {
+                *(p2+j)=*(p1+i);   //valua el vector de elementos unicos
+                j++;
+            }
+    }          
+    printf("\nEl arreglo modificado es: \n");
+                      imprime_arreglo(p2, tam2);  
+}
+else
+{
+    printf("\nNo hay numeros que no se repitan\n\n");  
+}                                                       
+    
+  system("PAUSE");
+  return 0;
+}  
+
+int tamano(void)
+{
+    int a;
+        printf("Ingrese el tamano del vector: ");
+        scanf("%d", &a);
+    return a;
+}
+
+void ingresa_arreglo(int *p, int tam)
+{
+         for(i=0 ;i<tam ;i++)
+         {
+                 printf("\tElemento %d: ", i+1);
+                 scanf("%d", (p+i));
+         }
+}
+
+void imprime_arreglo(int *p, int tam)
+{
+     for(i=0 ;i<tam ;i++)
+     {
+             printf("\t%d. %d\n", i+1, *(p+i));
+     }
+}

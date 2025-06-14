@@ -1,0 +1,92 @@
+/*4) Implementar un programa  q permita crear un objeto random, este permitira crear mediante la funcion rand()
+ * un n alaetorio, tendra los metodos adecuados para generar, mostrar y comunicar un n aleatorio. se creara un 
+ * 2do  objeto Arreglo, el cual administro un arreglo de tamaño N( creado en compilacion). El tamaño lo crea el objeto random.
+ * Se dispondra de metodos para cargarlo desde el teclado, mostrarlo por pantalla */
+ 
+ #include <iostream>
+ #include <stdlib.h>                  // ak se almacena abs()  y rand()
+ #include <math.h>
+
+
+ using namespace std;
+ 
+ class random
+ {     int num;
+       public:
+			  void genero_n();
+			  int devuelvo_n();
+};
+
+
+class arreglo
+{   int a[50];
+     int tam;     // entero tam, el arreglo vivo
+    public:
+          arreglo();
+          void tamano (int n);
+          void carga (int dato, int pos);
+          int* devuelve_elem();
+};
+
+
+void random::genero_n()    
+{float nu;
+ int info;
+     nu=rand();                 // genera en el numero entero semi alateroiro 1 a 50
+     
+     nu=abs(nu);                // le saco el valor absoluto, xq rand genera numeros positvos o negativos
+     
+     info=(int) (nu)%50;           // casteo, pasarlo a entero   (0-49)
+     info=info+1;
+     num=info;
+     //cout<<info;  con esto compruebo q anda
+};
+
+int random::devuelvo_n()
+{return num;
+}
+
+arreglo::arreglo()
+{int i;
+  for(i=0;i<50;i++)
+    { a[i]=0;
+    }
+}
+
+void arreglo::tamano(int n)
+{ tam=n;
+}
+	
+void arreglo::carga(int dato, int pos)
+{ a[pos]=dato;
+}
+
+int* arreglo::devuelve_elem()
+{ int *p;
+  p=&a[0];
+  return p;
+ } 
+	
+    
+int main()
+{  
+	class random r;
+   class arreglo vec;
+   int cant,i,data;
+   
+   r.genero_n();
+   cant=r.devuelvo_n();
+   vec.tamano(cant);            // se cargo el arreglo de tamaño can
+   for(i=0;i<cant;i++)
+     { cin>>data;
+       vec.carga(data,i);
+     }
+    cout<<"\nSe genero un arreglo de tamano"<<cant<<"y sus elementos son:";
+    for(i=0;i<cant;i++)
+      { cout<<(*(vec.devuelve_elem()) + i);
+      }   
+     
+	
+	return 0;
+}    
+

@@ -1,0 +1,120 @@
+/*3) Se desea codificar una Cola dinámica. Los nodos contienen  Apellido y edad de personas.
+ Cargar la estructura hasta que se ingrese la edad 999. 
+Se desea recorrerla y mostrar por pantalla la información de los nodos  
+que representen personas mayores de edad  (21 años).*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct nodo
+{ char apellido[100];
+  int  edad;
+  struct nodo *sig; 
+} ;
+
+int ed (void);
+char apellido(void);
+
+
+int main()
+{  struct nodo *q,*p,*base;
+   int edad,tam,i=0;
+   char apellido[100];
+   
+   p=q=base=NULL;
+   
+   
+   printf("Hola :D  para terminar de cargar nodos ingresa -999- en la edad\n\n");
+   p=(struct nodo*)malloc(sizeof(*p));
+   
+   
+   if(p==NULL)
+       { printf("No hay memoria\n");
+         return 1;
+       }
+   else
+       {        printf("---Nuevo nodo---\n\n");
+	             if( (edad=ed()) !=999 )
+	               {      printf("Cual es tu apellido?: ");
+         	               scanf("%s",(*p).apellido);
+				   
+				    
+	                     
+	                    
+                         (*p).edad=edad;
+						 (*p).sig=NULL;
+         				 base=p;
+         				 printf("\n");
+         				 printf("---Nuevo nodo---\n\n");
+         				
+         				while(  (edad=ed())!=999)
+         				  {      q=(struct nodo*)malloc(sizeof(*q));
+                                   if(q==NULL)
+                                      { printf("no hay memoria\n");
+                                        return 1;
+                                      }
+                                     
+									else
+									  {     
+									         
+									        (*q).edad=edad;
+									         printf("Cual es tu apellido?: ");
+         	   								 scanf("%s",(*q).apellido);
+	                                        
+	                                        
+	                                         (*q).sig=NULL;
+	                                         (*p).sig=q;
+	                                         p=q;
+	                                         
+									  }  
+									  printf("\n");
+         			              	 printf("---Nuevo nodo---\n\n");
+         				  	
+         				  }
+                         
+				     
+	                
+	               	i++;
+	               	
+	               	 
+	               }
+	   								 
+        
+         
+       }
+       
+    
+   
+system("CLS");
+printf("Trabajo impreso con edades mayores a 21 en forma de cola  \n\n");
+
+ p=base;
+  while(p!=NULL)
+	{    if( (*p).edad>=21)
+	        { 	printf("Edad: %d\n", (*p).edad);
+				printf("Apellido: %s\n",(*p).apellido);
+				printf("\n\n");
+				
+		   }p=(*p).sig;
+	}  
+   
+    
+
+
+
+
+    system("PAUSE");
+	return 0;
+}
+
+int ed (void)
+{ int e;        
+         printf("Cual es tu edad?:    ");
+         scanf("%d",&e);
+         
+         return e;
+}
+
+
+

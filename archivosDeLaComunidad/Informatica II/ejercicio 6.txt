@@ -1,0 +1,196 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define tam 3
+
+struct nodo
+{
+	char nombre[30];
+	char apellido[30];
+	int faltas;
+	float promedio;
+	struct nodo *sig;
+};
+
+struct alumno
+{
+	char nombre[30];
+	char apellido[30];
+	int faltas;
+	float promedio;
+}ficha[tam];
+
+int main()
+{
+	struct nodo *p, *base, *q, *base2;
+	int  opcion, i, min;
+	float max;
+	
+	do
+	{
+		printf("\n\n----MENU----\n");
+		printf("1. Ingresar datos \n");
+		printf("2. Alumnos con mayor promedio\n");
+		printf("3. Alumnos con menos inasistencias \n");
+		printf("4. Alumnos con promedio mayor a 7 \n");
+		printf("5. Salir \n");
+		printf("Ingrese la opcion elegida: ");
+		scanf("%d", &opcion);
+		
+		switch(opcion)
+		{
+			case 1:
+				printf("\n------------Ingreso de datos------------\n");
+				for(i=0 ;i<tam ;i++)
+				{
+					printf("\n---- ALUMNO %d ----\n", i+1);
+					printf("Nombre: ");  	  	
+					scanf("%s",  ficha[i].nombre);
+					printf("Apellido: ");	  	
+					scanf("%s", ficha[i].apellido);
+					printf("Inasistencias: ");	
+					scanf("%d", &ficha[i].faltas);
+					printf("Promedio: ");		
+					scanf("%f", &ficha[i].promedio);
+				}
+	
+				p=NULL;
+				base=NULL;
+							//Copia elementos del arreglo en la pila
+				for(i=0 ;i<tam ;i++)			 
+				{
+					p=(struct nodo*)malloc(sizeof(*p));
+					if(p==NULL)
+					{
+						printf("No se pudo gestionar la memoria\n");
+						return 1;
+					}
+					else
+					{
+						strcpy((*p).nombre, &ficha[i].nombre[0]);
+						strcpy((*p).apellido, &ficha[i].apellido[0]);
+						(*p).faltas=ficha[i].faltas;
+						(*p).promedio=ficha[i].promedio;
+						(*p).sig=base;
+						base=p;
+					}	
+				}				
+		     	break;
+		    case 2:
+		    	p=base;
+		    	max=0;
+		    	base2=NULL;
+		    		while(p!=NULL)
+		    		{
+		    			if( (*p).promedio>=max )
+		    			{
+		    				q=(struct nodo*)malloc(sizeof(*q));
+		    				if(q==NULL)
+		    				{
+		    					printf("No se pudo gestionar la memoria \n");
+		    					return 1;
+		    				}
+		    				else
+		    				{
+		    					max=(*p).promedio;
+		    					(*q).promedio=(*p).promedio;
+		    					strcpy( (*q).nombre, (*p).nombre );
+		    					strcpy( (*q).apellido, (*p).apellido );
+		    					(*q).sig=base2;
+		    					base2=q;
+		    				}
+		    			}
+		    			p=(*p).sig;
+		    		}
+		    		printf("\nEl mayor promedio es: %.2f: \n", max);
+		    		while(q!=NULL)
+		    		{
+		    			printf("Del alumno %s %s\n", (*q).nombre, (*q).apellido);
+		    			q=(*q).sig;
+		    		}
+		    	free(q);
+			break;
+		    case 3:
+		    	p=base;
+		    	min=999;
+		    	base2=NULL;
+		    		while(p!=NULL)
+		    		{
+		    			if( (*p).faltas<=min )
+		    			{
+		    				q=(struct nodo*)malloc(sizeof(*q));
+		    				if(q==NULL)
+		    				{
+		    					printf("No se pudo gestionar la memoria \n");
+		    					return 1;
+		    				}
+		    				else
+		    				{
+		    					min=(*p).faltas;
+		    					(*q).faltas=(*p).faltas;
+		    					strcpy( (*q).nombre, (*p).nombre );
+		    					strcpy( (*q).apellido, (*p).apellido );
+		    					(*q).sig=base2;
+		    					base2=q;
+		    				}
+		    			}
+		    			p=(*p).sig;
+		    		}
+		    		printf("\nLos alunos con menos inasistencias son: \n");
+		    		while(q!=NULL)
+		    		{
+		    			printf("%s %s\n", (*q).nombre, (*q).apellido);
+		    			q=(*q).sig;
+		    		}
+		    		printf("Con %d inasistencias\n", min);
+		    	free(q);
+		    	break;
+		    case 4:
+		    	p=base;
+		    	max=7;
+		    	base2=NULL;
+		    		while(p!=NULL)
+		    		{
+		    			if( (*p).promedio>=max )
+		    			{
+		    				q=(struct nodo*)malloc(sizeof(*q));
+		    				if(q==NULL)
+		    				{
+		    					printf("No se pudo gestionar la memoria \n");
+		    					return 1;
+		    				}
+		    				else
+		    				{
+		    					max=(*p).promedio;
+		    					(*q).promedio=(*p).promedio;
+		    					strcpy( (*q).nombre, (*p).nombre );
+		    					strcpy( (*q).apellido, (*p).apellido );
+		    					(*q).sig=base2;
+		    					base2=q;
+		    				}
+		    			}
+		    			p=(*p).sig;
+		    		}
+		    		printf("\nLos alumnos con promedio mayor a 7 son: \n");
+		    		while(q!=NULL)
+		    		{
+		    			printf("%s %s ", (*q).nombre, (*q).apellido);
+		    			printf("\tPromedio: %.2f\n", (*q).promedio);
+		    			q=(*q).sig;
+		    		}
+		    	free(q);
+		    	break;
+		    case 5:
+		    		printf("\n\n----FIN DEL PROGRAMA----\n\n");
+		    	break;
+		    default:
+					system("CLS");	    	
+		    		printf("Ingrese una opcion valida\n\n");
+				break;
+		}
+	}while(opcion!=5);
+	free(p);
+
+	system("PAUSE");
+	return 0;
+}

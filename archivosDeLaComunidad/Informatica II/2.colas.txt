@@ -1,0 +1,109 @@
+/*2) Codificar un programa que permita cargar una cola dinámica con N letras (cualquier carácter que 
+no sea letra rechazarlo, y pedir un nuevo ingreso) ingresados desde el teclado.
+ Recorrerla y mostrar su contenido por pantalla.*/
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+struct nodo
+{   char dato;
+	struct nodo *sig;
+};
+
+
+void imprime(struct nodo *p);
+char letra(void);
+
+int main()
+{ struct nodo *q,*p,*base;
+  int tam=0,i;
+  char c,num;
+  
+  p=q=base=NULL;
+  
+ 
+ 
+  printf("Para salir del promgrama  -s-\n");
+  p=(struct nodo*)malloc(sizeof(*p));
+  if(p==NULL)
+  { printf("no hay memoria\n");
+    return 1;
+    
+  }
+  else
+  	{    if(  ((*p).dato=letra())  != 's' )   
+	      {
+	        
+	   
+	       
+              base=p;
+             (*p).sig=NULL; 
+		            while( (c=letra()) !='s')
+						  {   q=(struct nodo*)malloc(sizeof(*q));
+        
+											
+	    									if(q==NULL)
+	    										{printf("no hay memoria\n");
+	      											return 1;
+	    										}
+	    									else
+	    										{ (*q).dato=c;
+	      										  (*q).sig=NULL;
+	      										  (*p).sig=q;
+           											p=q;
+	    										}
+	                     }
+	    }
+	    
+     }
+           
+        
+      
+	 
+      
+     
+  
+ 
+  
+  printf("\n\n");
+  printf("Almacenado en forma de cola:\n");
+  
+  p=base;
+  while(p!=NULL)
+	{
+		printf("%c\n", (*p).dato);
+		p=(*p).sig;
+	}
+  
+ 
+  printf("\n\n");
+ 
+    system("PAUSE");
+	return 0;
+}
+
+char letra(void)
+{  char c[2];
+         	do
+            {   
+            	printf("ingresa un caracter:");
+                scanf("%s",&c);
+             }while( (c[0]>'Z' && c[0]<'a') || c[0]>'z'  || c[0]<'A');
+	
+             
+         return c[0];    
+}
+
+
+	
+void imprime(struct nodo *p)
+{
+	while(p!=NULL)
+	{
+		printf("%c\n", (*p).dato);
+		p=(*p).sig;
+	}
+}
+

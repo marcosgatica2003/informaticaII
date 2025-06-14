@@ -1,0 +1,101 @@
+3)
+#include <iostream>
+
+using namespace std;
+struct byte{
+		unsigned a8:1;
+		unsigned a7:1;
+		unsigned a6:1;
+		unsigned a5:1;
+		unsigned a4:1;
+		unsigned a3:1;
+		unsigned a2:1;
+		unsigned a1:1;
+			};	
+union uni	{
+		struct byte b;
+		char c;
+		int n;
+			};
+int main(int argc, char **argv)
+{	union uni x;int count=0,i=0;char ca[4];
+	cout<<"ingrese una frase"<<endl;
+	cin>>ca;
+do{
+	x.n=ca[i];
+	cout<<"la letra en binario es=";
+	cout<<x.b.a1<<x.b.a2<<x.b.a3<<x.b.a4<<x.b.a5<<x.b.a6<<x.b.a7<<x.b.a8<<endl;
+	cout<<"el numero en decimal es=";
+	cout<<x.n<<endl;
+	while(x.n>=1)
+	{	if((x.n%2)==1)
+		count++;
+		x.n=(x.n)/2;
+	}
+	cout<<"la cantidad de unos en la letra /"<<ca[i]<<"/es=";
+	cout<<count<<endl;
+	i++;
+	}while(i!=4);
+	return 0;
+}
+
+
+------------------------------------------------------------------------------------------------------
+
+						mio
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+struct byte
+{	unsigned a8:1; 
+ 	unsigned a7:1; 
+    unsigned a6:1; 
+    unsigned a5:1; 
+    unsigned a4:1; 
+    unsigned a3:1;
+	unsigned a2:1; 
+	unsigned a1:1;  
+};
+
+union bits
+{	struct byte b;
+	int c;
+	char n;
+};
+
+int main()
+{	union bits x;
+	char nom[25];
+	int i, cont=0, tam=0,cont2=0;
+	
+	cout<<"Ingresa una palabra:  ";	cin>>nom;
+	
+	for(i=0;i<strlen(nom);i++)
+	{ tam++;
+	}
+	i=0;
+	do{
+		cont=0;
+		x.c=nom[i];
+		cout<<"\n\n\t\tLa letra:  "<<nom[i];
+		cout<<"\nletra en binario: "
+			<<x.b.a1<<x.b.a2<<x.b.a3<<x.b.a4<<x.b.a5<<x.b.a6<<x.b.a7<<x.b.a8;
+		cout<<"\nLa letra en decimal: "<<x.c;
+		
+			while(x.c>=1)
+			{	if((x.c%2)==0)
+				cont++;
+				x.c=(x.c)/2;
+			}
+	cout<<"\nLa cantidad de 0 es:  "<<cont;
+	i++;
+	cont2=cont2+cont;
+		
+	}while(i!=tam);
+	
+	cout<<"\nLa cantidad de 0 de la palabra ingresada es: "<<cont2;
+}
+
+
